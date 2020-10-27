@@ -20,7 +20,8 @@ export const state = () => ({
   ip: "ok",
   csrf_token: "token",
   result_log_out: "test",
-  user: "user data"
+  user: "user data",
+  logged_in: false
 })
 
 export const actions= {
@@ -40,12 +41,24 @@ export const actions= {
     commit('SET_CSRF_TOKEN', result.session.access)
     commit('SET_USER', result.user)
     commit('increment')
+    commit('LOGGED_IN', true)
     // if (result.session.access) {
     //   window.location = "/dashboard"
     //   return
     // }
     // do something for errrors
   },
+  async logout ({ commit, state }) {
+    console.log(state.csrf_token)
+    // logIn(values)
+    const result = await this.$axios.$delete('http://localhost:3000/login',{
+      headers: {Authorization: "Bearer " + state.csrf_token}
+    })
+
+    commit('CLEAN_STATE')
+    commit('LOGGED_IN', false)
+  },
+
   async getUserData ({ commit, state }) {
     console.log(state.csrf_token)
     const result = await this.$axios.$get('http://localhost:3000/users/1',{
@@ -63,7 +76,10 @@ export const actions= {
       password: values.password,
       password: values.password_confirmation
     })
-    commit('SET_CSRF_TOKEN', result.access)
+    commit('SET_CSRF_TOKEN', result.session.access)
+    commit('SET_USER', result.user)
+    commit('LOGGED_IN', true)
+    if (result.session.access) {window.location="/dashboard"}
   }
 }
 
@@ -82,5 +98,14 @@ export const mutations = {
   },
   SET_USER(state,user) {
     state.user = user
+  },
+  CLEAN_STATE(state) {
+    state.user = ""
+    state.ip = ""
+    state.csrf_token = ""
+    state.counter = 0
+  },
+  LOGGED_IN(state, boolean) {
+    state.logged_in = boolean
   }
 }

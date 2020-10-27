@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <div>
-        {{ this.$store.state.result_log_out }}
-        {{ this.$store.state.csrf_token }}
-        {{ this.$store.state.ip }}
         <br/>
         <input v-model="username" placeholder="username">
         <br/>
@@ -11,19 +8,44 @@
         <br/>
         <input v-model="passwordRepeat" placeholder="repeat password" type="password">
         <br/>
-        {{ samePasswords }}
+        same passwords ?{{ samePasswords }}
         <br/>
-        <button @click="createUser">Submit</button>
-        <button @click="getIP">get IP</button>
-        <button @click="logout">logout</button>
+        <button v-show="!loggedIn" @click="login">Submit</button>
+        <button v-show="loggedIn" @click="logout">logout</button>
 
-        <div style="max-width: 500px; margin: 0 auto">{{ userData }}</div>
+        <div style="max-width: 500px; margin: 0 auto">Are you logged ? {{ loggedIn }}</div>
+
+        <div v-show="loggedIn">
+          <div style="max-width: 500px; margin: 0 auto">Hello {{ userData.email }} :)</div>
+          <div style="max-width: 500px; margin: 0 auto">your ID is {{ userData.id }}</div>
+          <div style="max-width: 500px; margin: 0 auto">and you were created {{ userData.created_at }}</div>
+        </div>
 
         <h1>STATE COUNTER : {{ counter }}</h1>
+        <div style="height: auto; width: 300px; background-color:pink" >
+            <button @click="toggleText"><span v-if="!isActive">SEE</span><span v-else >UNSEE</span></button>
+            <transition name="fade">
+              <div v-show="isActive" ><h1>I have been toggled</h1></div>
+            </transition>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
+
+<style>
+  .active {
+    color: yellow;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 0.2s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+</style>
 
 <script>
 import { mapMutations } from 'vuex'
@@ -34,18 +56,21 @@ export default {
       ip: "coucou",
       username: "",
       password: "",
-      passwordRepeat: ""
+      passwordRepeat: "",
+      isActive: false
     }
   },
   computed: {
     userData() { return this.$store.state.user },
     counter() { return this.$store.state.counter },
+    loggedIn() { return this.$store.state.logged_in },
     samePasswords() { return this.password === this.passwordRepeat },
     passwordLength() { return this.password.length > 5}
   },
   methods: {
-    async getIP() {
-      this.$store.dispatch('getIP')
+    toggleText: function() {
+      this.isActive = !this.isActive;
+      // some code to filter users
     },
     async fetchSomething() {
       const ip = await this.$axios.$get('http://icanhazip.com')
@@ -53,9 +78,9 @@ export default {
       this.$store.commit('SET_IP', ip)
     },
     async logout() {
-      await this.$store.dispatch('getUserData')
+      await this.$store.dispatch('logout')
     },
-    async createUser() {
+    async login() {
       // if(!this.samePasswords){
       //   alert('passwords are different')
       //   return
@@ -64,6 +89,7 @@ export default {
       //   return
       // }
       const credentials = await this.$store.dispatch('login', {username: this.username,password: this.password})
+
     }
   }
 }

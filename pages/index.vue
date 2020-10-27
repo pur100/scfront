@@ -23,6 +23,7 @@
           GitHub
         </a>
       </div>
+      <h2>Enter company siret</h2><input type="text">
     </div>
   </div>
 </template>

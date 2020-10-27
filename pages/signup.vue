@@ -50,7 +50,7 @@ export default {
         alert('password too short')
         return
       }
-      const credentials = await this.$store.dispatch('signup', {username: this.username,password: this.password, password: this.passwordRepeat})
+      const credentials = await this.$store.dispatch('signup', {username: this.username,password: this.password, password_confirmation: this.passwordRepeat})
     }
   }
 }

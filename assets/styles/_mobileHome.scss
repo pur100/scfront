@@ -1,0 +1,58 @@
+@media only screen and (max-width: 600px) {
+  .menu {
+    display: none !important;
+  }
+  .home_banner {
+    height: auto !important;
+    .content {
+      width: 90% !important;
+      .title {
+        font-size: 2em !important;
+      }
+      .buttons {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        button {
+          margin: 4px 0px;
+        }
+      }
+    }
+  }
+  .home_info {
+    height: auto !important;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 80px;
+    #second {
+      text-align: right;
+    }
+    #first, #second {
+      align-items: unset !important;
+    }
+    .info_block {
+      width: 90% !important;
+    }
+    .logo {
+      display: none !important;
+    }
+  }
+  .home_us {
+    height: auto !important;
+    .wrapper {
+      width: 90% !important;
+      .title {
+        font-size: 24px !important;
+      }
+      .minus {
+        font-size: 48px !important;
+      }
+      .content {
+        flex-direction: column;
+        p {
+          width: 90%;
+          margin-top: 55px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+// HEADER
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: $dark_blue;
+  color:white;
+  height: 80px;
+  align-items: center;
+  padding: 0 20px;
+  ;
+
+  .logo {
+    color: $flash_green;
+  }
+
+  .menu {
+    height: 100%;
+    padding: 16px 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    h4 {
+      margin: 0 4px;
+    }
+  }
+}

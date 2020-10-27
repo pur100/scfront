@@ -1,45 +1,77 @@
 <template>
   <div class="container">
-    <div style="margin: 0 auto">
-    <div>
-      <h1>DASHBOARD</h1>
-        {{ this.$store.state.result_log_out }}
-        CSRF TOKEN : {{ this.$store.state.csrf_token }}
-        {{ this.$store.state.ip }}
 
-    </div>
-    <button @click="getUserData">Get User Data</button>
-        {{ this.$store.state.ip }}
-    </div>
-    <div style="max-width: 500px; margin: 0 auto">{{ userData }}</div>
-    State Counter :
+
+  <div style="margin: 0 auto">
+      <h1>DASHBOARD</h1>
+      <div style="width: calc(80vw - 40px); margin: 40px; padding: 20px;">
+        <div class="" style="display: flex; justify-content: space-between; ">
+          <h3>Mes Factures</h3>
+          <button @click="$refs.newInvoice.openModal()">Nouvelle facture</button>
+        </div>
+        <div class="invoices">
+          <div v-for="invoice in userInvoices" class="invoice" style="display: flex;justify-content: space-between;">
+            <h4>{{ invoice.amount }}</h4>
+            <h4>{{ invoice.id }}</h4>
+            <h4>{{ invoice.created_at }}</h4>
+            <a :href="invoice.file">see file</a>
+          </div>
+        </div>
+      </div>
   </div>
 
+  <h1>modal ?</h1>
 
+  <modal ref="newInvoice">
+     <template v-slot:header>
+       <h1>Nouvelle facture:</h1>
+     </template>
+
+     <template v-slot:body>
+       <label for="amount">Montant de la facture</label>
+       <input v-model="amount" placeholder="" name="amount">
+       <br>
+      <label for="invoice">Facture au format .pdf</label>
+       <input v-on:change="invoice_file" type="file" name="invoice_file" placeholder="facture.pdf">
+       <br>
+     </template>
+
+     <template v-slot:footer>
+       <div>
+         <button @click="$refs.modalName.closeModal()">Cancel</button>
+         <button @click="$refs.modalName.closeModal()">Save</button>
+       </div>
+     </template>
+   </modal>
+
+
+</div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
+import Modal from "@/components/Modal";
 
 export default {
   data() {
     return {
-      user_id: "1",
+      user_id: this.$store.state.user.id,
       user_info: ""
     }
   },
+  components: {
+    Modal
+  },
   created() {
     console.log('created')
-
   },
   computed: {
-    userData() {
-      return this.$store.state.user
-    }
+    userData() { return this.$store.state.user },
+    userInvoices() { return this.$store.state.user_invoices }
   },
   methods: {
-    async getUserData() {
-      const get_user_data = await this.$store.dispatch('getUserData')
+    async getUserData(user_id) {
+      const get_user_data = await this.$store.dispatch('getUserData', user_id)
     },
   }
 }

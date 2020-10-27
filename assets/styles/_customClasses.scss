@@ -1,0 +1,26 @@
+.flex {
+  display: flex;
+}
+
+.around {
+  justify-content: space-around;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.dir_column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}

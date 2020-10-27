@@ -21,6 +21,7 @@ export const state = () => ({
   csrf_token: "token",
   result_log_out: "test",
   user: "user data",
+  user_invoices: "user invoices",
   logged_in: false
 })
 
@@ -29,6 +30,7 @@ export const actions= {
     const ip = await this.$axios.$get('http://icanhazip.com')
     commit('SET_IP', ip)
   },
+
   async login ({ commit }, values) {
     console.log("store values : ")
     console.log(values)
@@ -40,6 +42,7 @@ export const actions= {
     console.log(result)
     commit('SET_CSRF_TOKEN', result.session.access)
     commit('SET_USER', result.user)
+    commit('SET_USER_INVOICES', result.invoices)
     commit('increment')
     commit('LOGGED_IN', true)
     // if (result.session.access) {
@@ -54,14 +57,15 @@ export const actions= {
     const result = await this.$axios.$delete('http://localhost:3000/login',{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
-
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
   },
 
-  async getUserData ({ commit, state }) {
+  async getUserData ({ commit, state}) {
     console.log(state.csrf_token)
-    const result = await this.$axios.$get('http://localhost:3000/users/1',{
+    const user_id = id
+    console.log(user_id)
+    const result = await this.$axios.$get('http://localhost:3000/users/1' ,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
@@ -98,6 +102,9 @@ export const mutations = {
   },
   SET_USER(state,user) {
     state.user = user
+  },
+  SET_USER_INVOICES(state,user_invoices) {
+    state.user_invoices = user_invoices
   },
   CLEAN_STATE(state) {
     state.user = ""

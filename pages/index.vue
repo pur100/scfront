@@ -7,8 +7,8 @@
           <h1 class="title">factures impayées.</h1>
         </div>
         <div class="buttons">
-          <button>Prendre Rendez-vous</button>
-          <button>Contactez-nous</button>
+          <button a:href="#signup_form">Créez votre compte</button>
+          <button>Consultez nos tarifs</button>
         </div>
       </div>
     </div>
@@ -52,24 +52,193 @@
       </div>
 
     </div>
-    <div class="home_form" style="background-color: pink; height: 80vh;">
+    <div class="home_form" id="signup_form">
+      <div class="left">
+        <p class="text">Augmenter votre trésorerie /<br> Diminuer le poids des impayés.</p>
+        <div class="logo">SC</div>
+      </div>
+      <div class="right">
+        <p class="text">Rien de plus simple ! Remplissez votre formulaire de renseignement, vous pourrez ensuite nous transmettre votre facture impayée par email et nous déléguer la gestion de son recouvrement. Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.</p>
+        <div class="form">
+          <form action="" v-on:keydown="formValid" >
+            <div class="flex between input_block">
+              <div class="input_group flex dir_column around">
+                <label for="first_name">Prénom*</label>
+                <input v-model="first_name" placeholder="" required>
+              </div>
+              <div class="input_group flex dir_column around">
+                <label for="last_name">Nom*</label>
+                <input v-model="last_name" placeholder="" required>
+              </div>
+            </div>
+            <div class="flex between input_block">
+              <div class="input_group flex dir_column around relative">
+                <label for="siret">SIREN*</label>
+                <input v-model="siren" placeholder="" required>
+                <a @click.prevent="getCompany(), $refs.sirenModal.openModal()" class="sirencall absolute" v-if="siren.length > 0" href="">Vérifier le siren</a>
+              </div>
+              <div class="input_group flex dir_column around">
+                <label for="email">Email*</label>
+                <input v-model="email" placeholder="" required>
+              </div>
+            </div>
+              <div class="flex between input_block">
+                <div class="input_full flex dir_column around">
+                  <label for="message">Message</label>
+                  <input class="message" v-model="message" placeholder="">
+                </div>
+              </div>
+              <div class="flex between input_block">
+                <button v-show="formIsValid" class="valid" @click.prevent="sendMessage" type="submit">ENVOYER</button>
+                <button v-show="!formIsValid" class="notValid">ENVOYER</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <modal ref="sirenModal">
+         <template v-slot:header>
+           <h1>Validez votre entreprise:</h1>
+         </template>
 
+         <template v-slot:body>
+           <div class="etablissements flex around">
+             <div class="etablissement" v-on:click="select($event)" v-for="etablissement in companies_array">
+               <h3 class="company_name">{{ etablissement.uniteLegale.denominationUniteLegale }}</h3>
+               <h6 class="company_address">{{ etablissement.adresseEtablissement.numeroVoieEtablissement }} {{ etablissement.adresseEtablissement.libelleVoieEtablissement }}</h6>
+               <h6 class="company_zip">{{ etablissement.adresseEtablissement.codePostalEtablissement }}</h6>
+               <h6 class="company_city">{{ etablissement.adresseEtablissement.libelleCommuneEtablissement }}</h6>
+               <h6 class="company_siret none">{{ etablissement.siret }}</h6>
+             </div>
+           </div>
+
+          <!--  <div class="etablissement">
+             <h3 v:model="company_name" class="title">{{ company_info.uniteLegale.denominationUniteLegale }}</h3>
+             <h6 v:model="company_address" class="title">{{ company_info.adresseEtablissement.numeroVoieEtablissement }} {{ company_info.adresseEtablissement.libelleVoieEtablissement }}</h6>
+             <h6 v:model="company_zip" class="title">{{ company_info.adresseEtablissement.codePostalEtablissement }}</h6>
+             <h6 v:model="company_city" class="title">{{ company_info.adresseEtablissement.libelleCommuneEtablissement }}</h6>
+           </div> -->
+         </template>
+
+         <template v-slot:footer>
+           <div>
+             <button @click="cancelCompany(), $refs.sirenModal.closeModal()">Cancel</button>
+             <button @click="saveCompany(), $refs.sirenModal.closeModal()">Save</button>
+           </div>
+         </template>
+       </modal>
     </div>
   </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal";
+
 export default {
+    components: {
+      Modal
+    },
     data() {
       return {
-        isActive: true
+        isActive: true,
+        activeCompany: false,
+        formIsValid: false,
+        sirenLength: "",
+        siren: "",
+        company_address: "Adresse de votre entreprise",
+        company_zip: "Code postal",
+        company_city: "Ville",
+        company_info: "",
+        company_name: "Nom de votre entreprise",
+        company_siret: "SIRET de votre entreprise",
+        first_name: "",
+        last_name: "",
+        email: "",
+        message: "",
+        companies_array: []
       }
+    },
+    computed: {
+      sirenLength() { return this.siren.length > 8 },
+      first_nameLength() { return this.first_name.length > 0},
+      last_nameLength() { return this.last_name.length > 0},
+      emailLength() { return this.email.length > 0},
     },
     methods: {
       toggleText: function() {
         this.isActive = !this.isActive;
         // some code to filter users
-      }
+      },
+      formValid: function () {
+        if (this.siren.length > 7 && this.first_name.length > 0 && this.last_name.length > 0 && this.email.length > 0) {
+          this.formIsValid = true
+        }
+      },
+        async getCompany() {
+          console.log(this.siren)
+          const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren
+          const response = await this.$axios.$get(url,{
+                headers: {Authorization: "Bearer " + "f4a15e85-6a24-365d-bb84-bbc3b48ecc41"}
+          })
+          const companies_array = response.etablissements
+          this.companies_array = companies_array
+          const company_info = response.etablissements[0]
+          this.company_info = company_info
+          console.log(company_info)
+          console.log(company_info.uniteLegale.denominationUniteLegale)
+          console.log(company_info.adresseEtablissement.numeroVoieEtablissement + " " + company_info.adresseEtablissement.libelleVoieEtablissement )
+          console.log(company_info.adresseEtablissement.codePostalEtablissement)
+          console.log(company_info.adresseEtablissement.libelleCommuneEtablissement)
+
+        },
+        async sendMessage() {
+          console.log("inside send message-------------")
+          console.log(this.company_siret)
+          console.log(this.siren)
+          console.log(this.company_name)
+          console.log(this.company_address)
+          console.log(this.company_zip)
+          console.log(this.company_city)
+          console.log(this.email)
+          console.log(this.first_name)
+          console.log(this.last_name)
+          console.log(this.message)
+          const url = "http://localhost:3000/contacts"
+          const company_info = await this.$axios.$post(url,{
+              email: this.email,
+              siren: this.siren,
+              first_name: this.first_name,
+              last_name: this.last_name,
+              siret: this.company_siret,
+              company_name: this.company_name,
+              company_address: this.company_address,
+              company_zip: this.company_zip,
+              company_city: this.company_city,
+              message: this.message
+            })
+          this.company_info = company_info
+
+        },
+        saveCompany() {
+          console.log("inside save Company")
+        },
+        cancelCompany() {
+          console.log("inside cancel Company")
+          this.company_siret = ""
+          this.company_address = ""
+          this.company_zip = ""
+          this.company_city = ""
+          this.company_siret = ""
+        },
+        select: function(event) {
+              this.activeCompany = true;
+              const e = event.currentTarget;
+               this.company_address = e.getElementsByClassName("company_address")[0].innerHTML
+              this.company_zip = e.getElementsByClassName("company_zip")[0].innerHTML
+              this.company_city = e.getElementsByClassName("company_city")[0].innerHTML
+              this.company_siret = e.getElementsByClassName("company_siret")[0].innerHTML
+              this.company_name = e.getElementsByClassName("company_name")[0].innerHTML
+        }
     }
 }
 </script>

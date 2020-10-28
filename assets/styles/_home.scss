@@ -13,6 +13,7 @@
     width: 55%;
     text-align: left;
     padding-top: 10%;
+    padding-bottom: 40px;
   }
 
   .buttons {
@@ -144,9 +145,100 @@
   }
 }
 
+// FORM
 
+.home_form {
+  height: 80vh;
+  background-color: $dark_blue;
+  display: flex;
+  justify-content: space-around;
+  padding: 10%;
+  .left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    p, .logo {
+      font-size: 48px;
+      color: $flash_green;
+    }
+    p {
+      width: 66%;
+    }
+  }
+  .right {
+    width: 40%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .text {
+      color: white;
+    }
+    .form {
+      .input_block {
+        margin: 20px 0px;
+        .input_group{
+          width: 48%;
+        }
+        .input_full {
+          width: 100%;
+          .message {
+            height: 80px;
+          }
+        }
+        .sirencall {
+          text-align: right;
+          position: absolute;
+          right: 8px;
+          bottom: -16px;
+        }
+        label {
+          color: $blue_gray;
+        }
+        input {
+          height: 30px;
+          margin: 8px 0px;
+          border: none;
+          background-color: $blue_gray;
+          color: white;
+        }
+        button {
+          padding: 10px 24px;
+          letter-spacing: 1px;
+          font-size: 16px;
+        }
+        .not_valid {
+          background-color: $light_gray;
+          color: $dark_blue;
+        }
+        .valid {
+          background-color: $flash_green;
+          color: $dark_blue;
 
+        }
+      }
+    }
+  }
+}
 
+// MODAL
+.etablissements {
+  height: 150px;
+  margin-bottom: 10px;
+}
+.etablissement {
+  text-align: center;
+  padding: 20px !important;
+  color: $dark_blue;
+  height: auto;
+  padding: 5px;
+  margin: 10px;
+  &:hover {
+    border: 1px solid black;
+    opacity: 1;
+  }
+}
 
 
 

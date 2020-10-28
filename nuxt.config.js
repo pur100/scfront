@@ -36,7 +36,7 @@ export default {
     // proxy: true
   },
   server: {
-    port: process.env.port || 8000, // par défaut : 3000
+    port: 3000, // par défaut : 3000
     host: '0.0.0.0' // par défaut : localhost
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)

@@ -251,6 +251,13 @@
   }
 }
 
+.focus {
+  background-color: $dark_blue;
+  border: 1px solid $flash_green;
+  color: $flash_green;
+  opacity: 1;
+}
+
 .success {
   color: $dark_blue;
   h3 {

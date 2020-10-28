@@ -130,7 +130,7 @@
                 <h3>Merci {{ response_contact.first_name }} !</h3>
                 <p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>
               </div>
-              <div class="failure" v-if="response_contact.errors">
+              <div class="failure" v-else>
                 <h3>Oups, il y a eu une erreur</h3>
                 <p>Veuillez nous contacter ultérieurement, si le problème persiste, contactez nous directement à l'adresse suivante : leny@solutioncreance.fr</p>
               </div>
@@ -188,8 +188,8 @@ export default {
         }
       },
         async getCompany() {
-          console.log(this.siren)
-          const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren
+          console.log(this.siren.replace(/[\s\/]/g, ''))
+          const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren.replace(/[\s\/]/g, '')
           const response = await this.$axios.$get(url,{
                 headers: {Authorization: "Bearer " + "f4a15e85-6a24-365d-bb84-bbc3b48ecc41"}
           })
@@ -219,6 +219,17 @@ export default {
               message: this.message
             })
           this.response_contact = response
+
+          this.email = ""
+          this.siren = ""
+          this.first_name = ""
+          this.last_name = ""
+          this.company_siret = ""
+          this.company_name = ""
+          this.company_address = ""
+          this.company_zip = ""
+          this.company_city = ""
+          this.message = ""
         },
         clearform() {
           this.email = ""
@@ -245,7 +256,11 @@ export default {
         },
         select: function(event) {
               const e = event.currentTarget;
-              // e.addClass("active")
+              const etas = document.getElementsByClassName("etablissement")
+              for (var eta of etas) {
+                  eta.classList.remove('focus')
+              }
+              e.classList.toggle('focus')
               this.company_address = e.getElementsByClassName("company_address")[0].innerHTML
               this.company_zip = e.getElementsByClassName("company_zip")[0].innerHTML
               this.company_city = e.getElementsByClassName("company_city")[0].innerHTML

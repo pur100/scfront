@@ -36,3 +36,22 @@
 .absolute {
   position: absolute;
 }
+
+.side_buttons {
+  background-color: $light_gray;
+  color: $dark_blue;
+  &:hover {
+    background-color: $dark_blue;
+    color: $light_gray;
+  }
+}
+
+button {
+  padding: 10px 24px;
+  letter-spacing: 1px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-out;
+  text-transform: uppercase;
+  border: none;
+}

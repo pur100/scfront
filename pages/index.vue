@@ -7,8 +7,8 @@
           <h1 class="title">factures impayées.</h1>
         </div>
         <div class="buttons">
-          <button a:href="#signup_form">Créez votre compte</button>
-          <button>Consultez nos tarifs</button>
+          <button  class="side_buttons" a:href="#signup_form">Créez votre compte</button>
+          <button class="side_buttons" >Consultez nos tarifs</button>
         </div>
       </div>
     </div>
@@ -98,7 +98,7 @@
       </div>
       <modal ref="sirenModal">
          <template v-slot:header>
-           <h1>Validez votre entreprise:</h1>
+           <h1 class="" style="color:#0E1B30">Validez votre entreprise:</h1>
          </template>
 
          <template v-slot:body>
@@ -111,19 +111,12 @@
                <h6 class="company_siret none">{{ etablissement.siret }}</h6>
              </div>
            </div>
-
-          <!--  <div class="etablissement">
-             <h3 v:model="company_name" class="title">{{ company_info.uniteLegale.denominationUniteLegale }}</h3>
-             <h6 v:model="company_address" class="title">{{ company_info.adresseEtablissement.numeroVoieEtablissement }} {{ company_info.adresseEtablissement.libelleVoieEtablissement }}</h6>
-             <h6 v:model="company_zip" class="title">{{ company_info.adresseEtablissement.codePostalEtablissement }}</h6>
-             <h6 v:model="company_city" class="title">{{ company_info.adresseEtablissement.libelleCommuneEtablissement }}</h6>
-           </div> -->
          </template>
 
          <template v-slot:footer>
            <div>
-             <button @click="cancelCompany(), $refs.sirenModal.closeModal()">Cancel</button>
-             <button @click="saveCompany(), $refs.sirenModal.closeModal()">Save</button>
+             <button class="side_buttons" @click="cancelCompany(), formValid(),$refs.sirenModal.closeModal()">Cancel</button>
+             <button class="side_buttons" @click="saveCompany(), formValid(),$refs.sirenModal.closeModal()">Save</button>
            </div>
          </template>
        </modal>
@@ -192,17 +185,6 @@ export default {
 
         },
         async sendMessage() {
-          console.log("inside send message-------------")
-          console.log(this.company_siret)
-          console.log(this.siren)
-          console.log(this.company_name)
-          console.log(this.company_address)
-          console.log(this.company_zip)
-          console.log(this.company_city)
-          console.log(this.email)
-          console.log(this.first_name)
-          console.log(this.last_name)
-          console.log(this.message)
           const url = "http://localhost:3000/contacts"
           const company_info = await this.$axios.$post(url,{
               email: this.email,
@@ -231,8 +213,8 @@ export default {
           this.company_siret = ""
         },
         select: function(event) {
-              this.activeCompany = true;
               const e = event.currentTarget;
+              // e.addClass("active")
                this.company_address = e.getElementsByClassName("company_address")[0].innerHTML
               this.company_zip = e.getElementsByClassName("company_zip")[0].innerHTML
               this.company_city = e.getElementsByClassName("company_city")[0].innerHTML

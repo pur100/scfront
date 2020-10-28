@@ -18,7 +18,7 @@
 
   .buttons {
     margin-top: 40px;
-    button {
+    .side_buttons {
       background-color: $light_gray;
       color: $dark_blue;
       padding: 10px 24px;
@@ -148,7 +148,7 @@
 // FORM
 
 .home_form {
-  height: 80vh;
+  height: 100vh;
   background-color: $dark_blue;
   display: flex;
   justify-content: space-around;
@@ -188,10 +188,15 @@
           }
         }
         .sirencall {
+          color: $flash_green;
+          text-decoration: none;
           text-align: right;
           position: absolute;
           right: 8px;
           bottom: -16px;
+          &:hover {
+            text-decoration: underline;
+          }
         }
         label {
           color: $blue_gray;
@@ -203,11 +208,6 @@
           background-color: $blue_gray;
           color: white;
         }
-        button {
-          padding: 10px 24px;
-          letter-spacing: 1px;
-          font-size: 16px;
-        }
         .not_valid {
           background-color: $light_gray;
           color: $dark_blue;
@@ -215,7 +215,11 @@
         .valid {
           background-color: $flash_green;
           color: $dark_blue;
-
+          &:hover {
+            background-color: $dark_blue;
+            color: $flash_green;
+            border: 1px solid $flash_green;
+          }
         }
       }
     }
@@ -223,9 +227,16 @@
 }
 
 // MODAL
+.sirenModalTitle {
+  color: $flash_green !important;
+}
+
 .etablissements {
-  height: 150px;
+  height: 120px;
   margin-bottom: 10px;
+  .active {
+    border: 1px solid $flash_green;
+  }
 }
 .etablissement {
   text-align: center;

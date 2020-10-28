@@ -1,0 +1,15 @@
+.footer {
+  background-color: $dark_blue;
+  height: 90px;
+  .content {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 80%;
+    border-top: $blue_gray solid 1px;
+    color: $flash_green;
+    font-size: 12px;
+    .credits {
+      font-weight: bolder;
+    }
+  }
+}

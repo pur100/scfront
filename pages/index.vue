@@ -89,7 +89,7 @@
                 </div>
               </div>
               <div class="flex between input_block">
-                <button v-show="formIsValid" class="valid" @click.prevent="sendMessage" type="submit">ENVOYER</button>
+                <button v-show="formIsValid" class="valid" @click.prevent="sendMessage(), $refs.messageModal.openModal()" type="submit">ENVOYER</button>
                 <button v-show="!formIsValid" class="notValid">ENVOYER</button>
               </div>
             </form>
@@ -120,6 +120,25 @@
            </div>
          </template>
        </modal>
+       <modal ref="messageModal">
+          <template v-slot:header>
+            <div> </div>
+          </template>
+
+          <template v-slot:body>
+              <div class="success" v-if="response_contact.id">
+                <h3>Merci {{ response_contact.first_name }} !</h3>
+                <p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>
+              </div>
+              <div class="failure" v-if="response_contact.errors">
+                <h3>Oups, il y a eu une erreur</h3>
+                <p>Veuillez nous contacter ultérieurement, si le problème persiste, contactez nous directement à l'adresse suivante : leny@solutioncreance.fr</p>
+              </div>
+          </template>
+
+          <template v-slot:footer>
+          </template>
+        </modal>
     </div>
   </div>
 </template>
@@ -148,7 +167,8 @@ export default {
         last_name: "",
         email: "",
         message: "",
-        companies_array: []
+        companies_array: [],
+        response_contact: "RESPONSE CONTACT"
       }
     },
     computed: {
@@ -186,7 +206,7 @@ export default {
         },
         async sendMessage() {
           const url = "http://localhost:3000/contacts"
-          const company_info = await this.$axios.$post(url,{
+          const response = await this.$axios.$post(url,{
               email: this.email,
               siren: this.siren,
               first_name: this.first_name,
@@ -198,8 +218,19 @@ export default {
               company_city: this.company_city,
               message: this.message
             })
-          this.company_info = company_info
-
+          this.response_contact = response
+        },
+        clearform() {
+          this.email = ""
+          this.siren = ""
+          this.first_name = ""
+          this.last_name = ""
+          this.company_siret = ""
+          this.company_name = ""
+          this.company_address = ""
+          this.company_zip = ""
+          this.company_city = ""
+          this.message = ""
         },
         saveCompany() {
           console.log("inside save Company")
@@ -215,7 +246,7 @@ export default {
         select: function(event) {
               const e = event.currentTarget;
               // e.addClass("active")
-               this.company_address = e.getElementsByClassName("company_address")[0].innerHTML
+              this.company_address = e.getElementsByClassName("company_address")[0].innerHTML
               this.company_zip = e.getElementsByClassName("company_zip")[0].innerHTML
               this.company_city = e.getElementsByClassName("company_city")[0].innerHTML
               this.company_siret = e.getElementsByClassName("company_siret")[0].innerHTML

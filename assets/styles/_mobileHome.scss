@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1100px) {
   .menu {
     display: none !important;
   }
@@ -31,6 +31,9 @@
     }
     .info_block {
       width: 90% !important;
+      .text_block {
+        width: 100% !important;
+      }
     }
     .logo {
       display: none !important;

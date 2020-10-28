@@ -98,11 +98,11 @@
       </div>
       <modal ref="sirenModal">
          <template v-slot:header>
-           <h1 class="" style="color:#0E1B30">Validez votre entreprise:</h1>
+           <h1 v-if="companies_array[0]" class="" style="color:#0E1B30">Validez votre entreprise:</h1><div> </div>
          </template>
 
          <template v-slot:body>
-           <div class="etablissements flex around">
+           <div class="etablissements flex around" v-if="companies_array[0]">
              <div class="etablissement" v-on:click="select($event)" v-for="etablissement in companies_array">
                <h3 class="company_name">{{ etablissement.uniteLegale.denominationUniteLegale }}</h3>
                <h6 class="company_address">{{ etablissement.adresseEtablissement.numeroVoieEtablissement }} {{ etablissement.adresseEtablissement.libelleVoieEtablissement }}</h6>
@@ -111,12 +111,16 @@
                <h6 class="company_siret none">{{ etablissement.siret }}</h6>
              </div>
            </div>
+           <div class="failure" v-else>
+            <h3>Désolé, mais nous ne retrouvons pas votre code SIREN...</h3>
+            <p>Ce n'est pas grave, vous pouvez quand même nous envoyer votre message et nous vérifirons personnellement vos informations.</p>
+           </div>
          </template>
 
          <template v-slot:footer>
            <div>
              <button class="side_buttons" @click="cancelCompany(), formValid(),$refs.sirenModal.closeModal()">Cancel</button>
-             <button class="side_buttons" @click="saveCompany(), formValid(),$refs.sirenModal.closeModal()">Save</button>
+             <button class="side_buttons" v-if="companies_array[0]" @click="saveCompany(), formValid(),$refs.sirenModal.closeModal()">Save</button>
            </div>
          </template>
        </modal>

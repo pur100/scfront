@@ -258,11 +258,12 @@
   opacity: 1;
 }
 
-.success {
+.success, .failure {
   color: $dark_blue;
   h3 {
     margin: 10px 0px;
   }
+
 }
 
 

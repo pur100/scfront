@@ -4,7 +4,7 @@
 
 .home_banner {
   background-color: white;
-  height: 60vh;
+  height: 70vh;
   text-align: center;
   position: relative;
 
@@ -76,6 +76,8 @@
     height: 300px;
     .wrapper {
       display: flex;
+      justify-content: space-around;
+      width: 80%;
       height: 100%;
     }
     .text_block {
@@ -212,10 +214,12 @@
         .not_valid {
           background-color: $light_gray;
           color: $dark_blue;
+          border: 1px solid $light_gray;
         }
         .valid {
           background-color: $flash_green;
           color: $dark_blue;
+          border: 1px solid $flash_green;
           &:hover {
             background-color: $dark_blue;
             color: $flash_green;

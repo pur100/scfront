@@ -14,7 +14,27 @@
     color: $flash_green;
   }
 
+  .logo_wrap {
+    display: flex;
+  }
+
+  #logo_text {
+    margin-left: 6px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    color: $flash_green;
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 0;
+  }
+
+  #logo_text, #sc_logo_header {
+    height: 45px;
+  }
+
   .menu {
+    min-width: 300px;
     height: 100%;
     padding: 16px 0px;
     display: flex;

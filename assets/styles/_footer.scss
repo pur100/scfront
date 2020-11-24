@@ -1,4 +1,8 @@
 .footer {
+  a {
+    text-decoration: none!important;
+    color: $flash_green!important;
+  }
   background-color: $dark_blue;
   height: 90px;
   .content {

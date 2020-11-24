@@ -7,15 +7,23 @@
           <h1 class="title">factures impayées.</h1>
         </div>
         <div class="buttons">
-          <button  class="side_buttons" a:href="#signup_form">Créez votre compte</button>
-          <button class="side_buttons" >Consultez nos tarifs</button>
+          <button  class="side_buttons" @click="scrollMeTo('signup_form')">Créez votre compte</button>
+          <button class="side_buttons" ><router-link to="/tarifs">Consultez nos tarifs</router-link></button>
         </div>
       </div>
     </div>
      <div class="home_info" >
       <div class="info_block" id="first">
         <div class="wrapper">
-          <div class="logo">logo</div>
+            <div id="picto_left">
+               <svg xmlns="http://www.w3.org/2000/svg" width="101.013" height="119" viewBox="0 0 101.013 119">
+                 <g id="Groupe_27" data-name="Groupe 27" transform="translate(-12405 -10505)">
+                   <rect id="Rectangle_70" data-name="Rectangle 70" width="86" height="119" transform="translate(12405 10505)" fill="#fff"/>
+                   <path id="Trace_133" data-name="Trace 133" d="M5028,5675.31l34.732,34.732" transform="translate(7392.997 4881.075)" fill="none" stroke="#122746" stroke-width="21"/>
+                   <path id="Trace_140" data-name="Trace 140" d="M5055.316,5710.042l57.689-57.689" transform="translate(7385.583 4881.075)" fill="none" stroke="#122746" stroke-width="21"/>
+                 </g>
+               </svg>
+             </div>
           <div class="text_block">
             <h3 class="title">Chaque créance <br>sa solution</h3>
             <p class="text">Courir derrière vos clients afin d’obtenir le règlement de vos factures devient vite une activité contre-productive. Chez Solution Créance nous pensons que chaque impayé a sa solution. C’est pourquoi nous mettons notre expérience du recouvrement amiable à votre service.</p>
@@ -24,7 +32,17 @@
       </div>
       <div class="info_block" id="second">
         <div class="wrapper">
-          <div class="logo">logo</div>
+            <div id="picto_right">
+              <svg xmlns="http://www.w3.org/2000/svg" width="98" height="119" viewBox="0 0 98 119">
+                <g id="Groupe_20" data-name="Groupe 20" transform="translate(-99 -1046)">
+                  <rect id="Rectangle_71" data-name="Rectangle 71" width="86" height="119" transform="translate(105 1046)" fill="#fff"/>
+                  <g id="Ellipse_7" data-name="Ellipse 7" transform="translate(99 1057)" fill="none" stroke="#122746" stroke-width="21">
+                    <circle cx="49" cy="49" r="49" stroke="none"/>
+                    <circle cx="49" cy="49" r="38.5" fill="none"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
           <div class="text_block">
             <h3 class="title">Identifier l'origine <br>de l'impayé</h3>
             <p class="text">À l’issu de chaque dossier, vous recevrez un rapport de prévention du risque révélant les raisons du retard de paiement et les solutions à mettre en place afin d’éviter toute récidive.</p>
@@ -52,10 +70,25 @@
       </div>
 
     </div>
-    <div class="home_form" id="signup_form">
+    <div class="home_form" ref="signup_form" id="signup_form">
       <div class="left">
         <p class="text">Augmenter votre trésorerie /<br> Diminuer le poids des impayés.</p>
-        <div class="logo">SC</div>
+        <div id="sc_logo">
+            <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 55 80" style="enable-background:new 0 0 55 80;" xml:space="preserve">
+          <style type="text/css">
+            .st0, .st1{fill:none;stroke:#D9FFC7;stroke-width:11;stroke-miterlimit:10;}
+          </style>
+          <g>
+            <g>
+              <path class="st0" d="M27.5,48c-11,0-20-9-20-20s9-20,20-20s20,9,20,20"/>
+            </g>
+            <g>
+              <path class="st1" d="M27.5,32c11,0,20,9,20,20s-9,20-20,20s-20-9-20-20"/>
+            </g>
+          </g>
+          </svg>
+        </div>
       </div>
       <div class="right">
         <p class="text">Rien de plus simple ! Remplissez votre formulaire de renseignement, vous pourrez ensuite nous transmettre votre facture impayée par email et nous déléguer la gestion de son recouvrement. Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.</p>
@@ -182,6 +215,16 @@ export default {
       emailLength() { return this.email.length > 0},
     },
     methods: {
+      scrollMeTo(refName) {
+          var element = this.$refs[refName];
+          var top = element.offsetTop;
+
+
+          window.scrollTo({
+            top: top,
+            behavior: 'smooth',
+          });
+        },
       toggleText: function() {
         this.isActive = !this.isActive;
         // some code to filter users

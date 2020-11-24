@@ -5,7 +5,7 @@
         <p>@ Solution Créance 2020 - dev by pur100</p>
       </div>
       <ul class="menu flex around">
-        <ol>Mentions légales</ol>
+        <ol><router-link to="/mentionslegales">Mentions légales</router-link></ol>
         <ol>Conditions générales d'utilisation</ol>
         <ol>Politique de confidentialité</ol>
       </ul>

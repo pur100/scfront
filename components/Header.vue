@@ -5,7 +5,7 @@
     <a class="logo_wrap">
       <div id="sc_logo_header">
           <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 55 80" style="enable-background:new 0 0 55 80;" xml:space="preserve">
+           viewBox="0 0 55 80" style="" xml:space="preserve">
         <style type="text/css">
           .st0, .st1{fill:none;stroke:#D9FFC7;stroke-width:11;stroke-miterlimit:10;}
         </style>

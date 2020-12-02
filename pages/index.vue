@@ -16,13 +16,21 @@
       <div class="info_block" id="first">
         <div class="wrapper">
             <div id="picto_left">
-               <svg xmlns="http://www.w3.org/2000/svg" width="101.013" height="119" viewBox="0 0 101.013 119">
-                 <g id="Groupe_27" data-name="Groupe 27" transform="translate(-12405 -10505)">
-                   <rect id="Rectangle_70" data-name="Rectangle 70" width="86" height="119" transform="translate(12405 10505)" fill="#fff"/>
-                   <path id="Trace_133" data-name="Trace 133" d="M5028,5675.31l34.732,34.732" transform="translate(7392.997 4881.075)" fill="none" stroke="#122746" stroke-width="21"/>
-                   <path id="Trace_140" data-name="Trace 140" d="M5055.316,5710.042l57.689-57.689" transform="translate(7385.583 4881.075)" fill="none" stroke="#122746" stroke-width="21"/>
-                 </g>
-               </svg>
+             <div id="ddd">
+
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 75">
+             <g id="Groupe_32" data-name="Groupe 32" transform="translate(-2 -2.5)">
+               <g id="Groupe_30" data-name="Groupe 30">
+                 <path id="Trace_142" data-name="Trace 142" d="M27.5,48a20,20,0,1,1,20-20" fill="none" stroke="#caffc7" stroke-miterlimit="10" stroke-width="11"/>
+               </g>
+               <g id="Groupe_31" data-name="Groupe 31">
+                 <path id="Trace_143" data-name="Trace 143" d="M27.5,32a20,20,0,1,1-20,20" fill="none" stroke="#caffc7" stroke-miterlimit="10" stroke-width="11"/>
+               </g>
+             </g>
+           </svg>
+
+
+                 </div>
              </div>
           <div class="text_block">
             <h3 class="title">Chaque créance <br>sa solution</h3>
@@ -105,14 +113,20 @@
               </div>
             </div>
             <div class="flex between input_block">
+              <div class="input_full flex dir_column around">
+                <label for="email">Email*</label>
+                <input v-model="email" placeholder="" required>
+              </div>
+            </div>
+            <div class="flex between input_block">
               <div class="input_group flex dir_column around relative">
                 <label for="siret">SIREN*</label>
                 <input v-model="siren" placeholder="" required>
                 <a @click.prevent="getCompany(), $refs.sirenModal.openModal()" class="sirencall absolute" v-if="siren.length > 0" href="">Vérifier le siren</a>
               </div>
               <div class="input_group flex dir_column around">
-                <label for="email">Email*</label>
-                <input v-model="email" placeholder="" required>
+                <label for="company_name">Raison sociale*</label>
+                <input v-model="company_name" placeholder="" required>
               </div>
             </div>
               <div class="flex between input_block">
@@ -198,7 +212,7 @@ export default {
         company_zip: "Code postal",
         company_city: "Ville",
         company_info: "",
-        company_name: "Nom de votre entreprise",
+        company_name: "",
         company_siret: "SIRET de votre entreprise",
         first_name: "",
         last_name: "",
@@ -238,7 +252,7 @@ export default {
           console.log(this.siren.replace(/[\s\/]/g, ''))
           const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren.replace(/[\s\/]/g, '')
           const response = await this.$axios.$get(url,{
-                headers: {Authorization: "Bearer " + "f4a15e85-6a24-365d-bb84-bbc3b48ecc41"}
+                headers: {Authorization: "Bearer " + "3b9c2bc8-35b8-3273-9fec-490e3e009ba4"}
           })
           const companies_array = response.etablissements
           this.companies_array = companies_array
@@ -320,7 +334,52 @@ export default {
 
 <style>
 
+        body {
+        background-color: #122746;
+      }
 
+      div#ddd {
+        width: 100px;
+        left: 50%;
+        position: absolute;
+        top: 30%;
+      }
+
+    #Trace_142 {
+      stroke-dashoffset: 300;
+      stroke-dasharray: 100 200;
+      animation-name: aaa;
+      animation-duration: 3s;
+      animation-direction: alternate;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    #Trace_143 {
+      stroke-dashoffset: 300;
+      stroke-dasharray: 100 200;
+      animation-name: bbb;
+      animation-duration: 3s;
+        animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes aaa {
+
+      to {
+        stroke-dashoffset: 0;
+      }
+
+    }
+
+      @keyframes bbb {
+
+      to {
+        stroke-dashoffset: 0;
+      }
+
+    }
 
 
 .subtitle {

@@ -6,9 +6,6 @@
       <div id="sc_logo_header">
           <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
            viewBox="0 0 55 80" style="" xml:space="preserve">
-        <style type="text/css">
-          .st0, .st1{fill:none;stroke:#D9FFC7;stroke-width:11;stroke-miterlimit:10;}
-        </style>
         <g>
           <g>
             <path class="st0" d="M27.5,48c-11,0-20-9-20-20s9-20,20-20s20,9,20,20"/>

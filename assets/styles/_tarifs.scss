@@ -1,29 +1,80 @@
-.tarifs_block {
-  padding: 40px;
-  height: auto;
-  overflow: scroll;
-  width: 80%;
-  background-color: $flash_green;
+#tarif_container {
   margin: 0 auto;
+
   color: $dark_blue;
-  text-align:center;
-  h2 {
-    margin: 20px 0px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  h3 {
-    margin: 14px 0px;
-  }
+}
 
-  h4 {
-    margin: 8px 0px;
-    text-decoration: underline;
+.tarifs_block_half {
+  height: 60vh;
+  display: flex;
+  .half_block {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    .wrap {
+      margin: 0 auto;
+      width: 50%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
   }
+  .half_one {
+    background-color: white;
 
-  p {
-    margin: 12px 0px;
+      .txt1 {
+        font-size: 24px;
+      }
+  }
+  .half_two {
+    .wrap {
+      margin-left: 15%!important;
+    }
+    background-color: $blue_gray;
+    .txt1 {
+      font-size: 180px;
+      line-height: 150px;
+      color: $flash_green;
+      font-weight: 100!important;
+    }
+    .txt2 {
+      color: white;
+    }
+    button {
+      color: $flash_green;
+      opacity: 0.8;
+      border: 1px solid #FFFFFF19;
+      background-color: #FFFFFF19;
+      &:hover {
+        background-color: $flash_green;
+        color: $dark_blue;
+      }
+    }
   }
 }
 
+.tarifs_block_full {
+  background-color: $flash_green;
+  height: 60vh;
+  text-align: left;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  .wrap {
+    margin: 0 auto;
+    width: 50%;
+    .title {
+      font-size: 24px;
+      margin-bottom: 18px;
+      letter-spacing: 2px;
+    }
+    .text {
+      font-size: 42px;
+      font-weight: 100 !important;
+    }
+  }
+}
 

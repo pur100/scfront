@@ -1,0 +1,63 @@
+#tarif_container {
+  margin: 0 auto;
+
+  color: $dark_blue;
+}
+
+.charte_block_half {
+  height: 60vh;
+  display: flex;
+  .half_block {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    .wrap {
+      margin: 0 auto;
+      width: 90%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .txt1 {
+        font-size: 20px;
+        text-align: center;
+      }
+      li {
+        margin: 12px 0px;
+      }
+    }
+  }
+  .half_one {
+    background-color: $flash_green;
+
+
+  }
+  .half_two {
+    background-color: $blue_gray;
+    color: white;
+
+  }
+}
+
+.charte_block_full {
+  background-color: white;
+  height: auto;
+  text-align: left;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  .wrap {
+    margin: 0 auto;
+    width: 70%;
+    padding: 40px;
+
+    .text {
+      margin-bottom: 48px;
+      font-size: 42px;
+      font-weight: 100 !important;
+    }
+  }
+}
+

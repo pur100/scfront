@@ -1,39 +1,88 @@
 <template>
   <div class="container" id="tarif_container">
-    <div class="tarifs_block_full">
+    <div class="charte_block_full">
       <div class="wrap">
-        <h3 class="title">NOS TARIFS</h3>
-        <p class="text">Il est important pour nous<br> que nos tarifs soient clairs<br> et transparents.</p>
-      </div>
-    </div>
-    <div class="tarifs_block_half">
-      <div class="half_block half_one">
-        <div class="wrap">
-          <div class="txt1">
-            Nous nous rémunérons uniquement sur les montants que nous parvenons à récupérer.
-          </div>
-          <div class="txt2">
-            De cette manière, nous confier vos factures en souffrances n’engage aucun coût de votre côté, cela permet de consolider le retour sur investissement que notre service représente.
-          </div>
-          <div class="txt3">
-            <strong>Il ne vous sera facturé aucun frais caché.</strong>
-          </div>
+        <p class="text">La charte déontologique<br>du recouvrement amiable</p>
+
+        <div class="text">
+          <style type="text/css">
+              p.p1 {
+                  margin: 0.0px 0.0px 0.0px 0.0px;
+                  text-align: center;
+                  font: 12.0px Arial;
+                  color: #000000;
+                  -webkit-text-stroke: #000000
+              }
+
+              p.p2 {
+                  margin: 0.0px 0.0px 0.0px 0.0px;
+                  text-align: center;
+                  font: 12.0px Arial;
+                  color: #000000;
+                  -webkit-text-stroke: #000000;
+                  min-height: 14.0px
+              }
+
+              p.p3 {
+                  margin: 0.0px 0.0px 0.0px 0.0px;
+                  font: 12.0px Arial;
+                  color: #000000;
+                  -webkit-text-stroke: #000000;
+                  min-height: 14.0px
+              }
+
+              p.p4 {
+                  margin: 0.0px 0.0px 0.0px 0.0px;
+                  font: 12.0px Arial;
+                  color: #000000;
+                  -webkit-text-stroke: #000000
+              }
+
+              li.li4 {
+                  margin: 0.0px 0.0px 0.0px 0.0px;
+                  font: 12.0px Arial;
+                  color: #000000;
+                  -webkit-text-stroke: #000000
+              }
+
+              span.s1 {
+                  font-kerning: none
+              }
+
+              ol.ol1 {
+                  list-style-type: decimal
+              }
+          </style>
+
+          <p class="p4"><span class="s1"><strong>Solution cr&eacute;ance garantit &agrave; ses clients :</strong></span></p>
+          <p class="p3"><br></p>
+          <ol class="ol1">
+              <li class="li4"><span class="s1">La comp&eacute;tence et la moralit&eacute; de leurs collaborateurs.</span></li>
+              <li class="li4"><span class="s1">Avoir souscrit une assurance en responsabilit&eacute; civile et professionnelle.</span></li>
+              <li class="li4"><span class="s1">L&apos;ouverture d&apos;un compte affect&eacute; &agrave; la r&eacute;ception des fonds provenant du recouvrement des cr&eacute;ances.</span></li>
+              <li class="li4"><span class="s1">La d&eacute;claration d&rsquo;activit&eacute; au Procureur de la R&eacute;publique.</span></li>
+              <li class="li4"><span class="s1">L&apos;application de tarifs et conditions claires.</span></li>
+              <li class="li4"><span class="s1">Des comptes rendus r&eacute;guliers.</span></li>
+              <li class="li4"><span class="s1">Les reversements des sommes disponibles dans les d&eacute;lais convenus.</span></li>
+              <li class="li4"><span class="s1">La confidentialit&eacute; des informations communiqu&eacute;es.</span></li>
+          </ol>
+          <p class="p3"><br></p>
+          <p class="p4"><span class="s1"><strong>Solution Cr&eacute;ance s&apos;engage &agrave; l&apos;&eacute;gard des d&eacute;biteurs &agrave; :</strong></span></p>
+          <p class="p3"><br></p>
+          <ol class="ol1">
+              <li class="li4"><span class="s1">S&apos;identifier, clairement et sans ambigu&iuml;t&eacute;.</span></li>
+              <li class="li4"><span class="s1">Utiliser un langage simple et compr&eacute;hensible.</span></li>
+              <li class="li4"><span class="s1">Respecter les personnes et leur vie priv&eacute;e.</span></li>
+              <li class="li4"><span class="s1">Ne r&eacute;clamer que le montant des sommes contractuellement et l&eacute;galement dues.</span></li>
+              <li class="li4"><span class="s1">Pr&eacute;venir les d&eacute;biteurs avant toute instance judiciaire.</span></li>
+              <li class="li4"><span class="s1">R&eacute;pondre aux demandes d&apos;informations des clients sur leurs cr&eacute;ances.</span></li>
+              <li class="li4"><span class="s1">Rechercher, si possible, un accord amiable.</span></li>
+              <li class="li4"><span class="s1">Fournir une quittance pour tout paiement.</span></li>
+          </ol>
         </div>
       </div>
-      <div class="half_block half_two">
-        <div class="wrap">
-          <div class="txt1">
-            10%
-          </div>
-          <div class="txt2">
-            Notre commission est calculée sur la base d’un pourcentage unique de 10% se rapportant au montant TTC de votre facture impayée.
-          </div>
-          <button @click="scrollMeTo('signup_form')">
-            En savoir plus
-          </button>
-        </div>
-      </div>
     </div>
+
     <div class="home_form" ref="signup_form" id="signup_form">
       <div class="left">
         <p class="text">Augmenter votre trésorerie /<br> Diminuer le poids des impayés.</p>

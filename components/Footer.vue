@@ -6,8 +6,8 @@
       </div>
       <ul class="menu flex around">
         <ol><router-link to="/mentionslegales">Mentions légales</router-link></ol>
-        <ol>Conditions générales d'utilisation</ol>
-        <ol>Politique de confidentialité</ol>
+        <ol><router-link to="/charte">Charte déontologique</router-link></ol>
+        <ol><router-link to="/tarifs">Nos tarifs</router-link></ol>
       </ul>
     </div>
   </div>

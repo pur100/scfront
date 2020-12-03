@@ -1,24 +1,27 @@
 .mentions_legales_block {
   padding: 40px;
-  height: 80vh;
-  overflow: scroll;
   width: 80%;
-  background-color: $flash_green;
   margin: 0 auto;
   color: $dark_blue;
   text-align:left;
   h2 {
     margin: 20px 0px;
-    text-align: center;
     margin-bottom: 40px;
+    text-align: left;
+    font-size: 52px;
+    font-weight: 100;
   }
   h3 {
-    margin: 14px 0px;
+    margin: 10px 0px;
+    text-align: left;
+    font-size: 28px;
+    font-weight: 100;
   }
 
   h4 {
     margin: 8px 0px;
     text-decoration: underline;
+    text-transform: uppercase;
   }
 
   p {
@@ -27,3 +30,7 @@
 }
 
 
+#ml_container {
+  background-color: white;
+
+}

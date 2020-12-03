@@ -2,58 +2,10 @@
   <div class="container" id="tarif_container">
     <div class="charte_block_full">
       <div class="wrap">
-        <p class="text">La charte déontologique<br>du recouvrement amiable</p>
+        <p class="title">La charte déontologique<br>du recouvrement amiable</p>
 
         <div class="text">
-          <style type="text/css">
-              p.p1 {
-                  margin: 0.0px 0.0px 0.0px 0.0px;
-                  text-align: center;
-                  font: 12.0px Arial;
-                  color: #000000;
-                  -webkit-text-stroke: #000000
-              }
-
-              p.p2 {
-                  margin: 0.0px 0.0px 0.0px 0.0px;
-                  text-align: center;
-                  font: 12.0px Arial;
-                  color: #000000;
-                  -webkit-text-stroke: #000000;
-                  min-height: 14.0px
-              }
-
-              p.p3 {
-                  margin: 0.0px 0.0px 0.0px 0.0px;
-                  font: 12.0px Arial;
-                  color: #000000;
-                  -webkit-text-stroke: #000000;
-                  min-height: 14.0px
-              }
-
-              p.p4 {
-                  margin: 0.0px 0.0px 0.0px 0.0px;
-                  font: 12.0px Arial;
-                  color: #000000;
-                  -webkit-text-stroke: #000000
-              }
-
-              li.li4 {
-                  margin: 0.0px 0.0px 0.0px 0.0px;
-                  font: 12.0px Arial;
-                  color: #000000;
-                  -webkit-text-stroke: #000000
-              }
-
-              span.s1 {
-                  font-kerning: none
-              }
-
-              ol.ol1 {
-                  list-style-type: decimal
-              }
-          </style>
-
+-
           <p class="p4"><span class="s1"><strong>Solution cr&eacute;ance garantit &agrave; ses clients :</strong></span></p>
           <p class="p3"><br></p>
           <ol class="ol1">

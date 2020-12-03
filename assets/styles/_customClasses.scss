@@ -37,6 +37,10 @@
   position: absolute;
 }
 
+.mobile {
+  display: none;
+}
+
 .side_buttons {
   background-color: $light_gray;
   color: $dark_blue;

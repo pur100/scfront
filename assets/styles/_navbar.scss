@@ -1,6 +1,14 @@
 // HEADER
+.menuBurger {
+  height: 180px !important;
+  transition: all 1s cubic-bezier(0.17, 0.04, 0.03, 0.94);
+}
 
 .nav {
+
+}
+
+.wrap {
   display: flex;
   justify-content: space-between;
   background-color: $dark_blue;
@@ -46,4 +54,21 @@
       letter-spacing: 2px;
     }
   }
+}
+
+rect {
+  fill: $flash_green;
+}
+
+.slideDown {
+  height: 100px !important;
+  z-index: 100;
+  top: 80px;
+  width: 100%;
+  left: 0;
+  background-color: $dark_blue;
+  border-top: 1px solid white;
+  padding: 20px 10px;
+  color: white;
+  text-align: right;
 }

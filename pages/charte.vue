@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="right">
-        <p class="text">Rien de plus simple ! Remplissez votre formulaire de renseignement, vous pourrez ensuite nous transmettre votre facture impayée par email et nous déléguer la gestion de son recouvrement. Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.</p>
+        <p class="text">Rien de plus simple ! Créez votre compte en remplissant votre formulaire de renseignement, vous pourrez ensuite nous transmettre votre facture impayée par email et nous déléguer la gestion de son recouvrement. Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.</p>
         <div class="form">
           <form action="" v-on:keydown="formValid" >
             <div class="flex between input_block">

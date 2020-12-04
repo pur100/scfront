@@ -5,7 +5,9 @@
 }
 
 .nav {
-
+  rect {
+    fill: $flash_green;
+  }
 }
 
 .wrap {
@@ -56,9 +58,7 @@
   }
 }
 
-rect {
-  fill: $flash_green;
-}
+
 
 .slideDown {
   height: 100px !important;

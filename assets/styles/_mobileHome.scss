@@ -25,12 +25,21 @@
     height: auto !important;
     flex-direction: column;
     width: 100%;
-    padding-top: 80px;
+    padding-top: 0px;
+    .wrapper {
+      flex-direction: column;
+      align-self: center;
+    }
+    #picto_left, #picto_right {
+      display: none;
+    }
     #second {
       text-align: right;
     }
     #first, #second {
       align-items: unset !important;
+      height: auto;
+      padding: 40px 0px;
     }
     .info_block {
       width: 90% !important;

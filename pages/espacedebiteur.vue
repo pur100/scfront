@@ -13,13 +13,13 @@
           <p>Ce numéro se trouve dans chacune de nos correspondance (courrier, email). </p>
           <br>
 
-          <a class="rib_link" href="https://res.cloudinary.com/dpwhjxnci/image/upload/v1607158017/rib_v3ftzn.pdf" target="_blank">ICI NOTRE RIB EN .PDF</a>
+          <a style="text-transform: uppercase;" class="rib_link" href="https://res.cloudinary.com/dpwhjxnci/image/upload/v1607158017/rib_v3ftzn.pdf" target="_blank">Télécharger le rib ICI</a>
 
           <br>
           <br>
           <br>
 
-          <h4>Règlement par virement bancaire : </h4>
+          <h4>Règlement par chèque : </h4>
           <br>
           <p>En cas de règlement par chèque, merci de le mettre à l'ordre de <strong>SOLUTION CRÉANCE</strong> et de renseigner le numéro de dossier au dos du chèque. </p>
           <p>Celui-ci sera ensuite à nous envoyer par courrier à l'adresse suivante :</p>

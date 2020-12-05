@@ -122,3 +122,11 @@ ul {
    overflow: hidden;
    max-height: 0;
 }
+
+.rib_link {
+  text-decoration: underline !important;
+  &:hover {
+    color: $flash_green !important;
+  }
+}
+

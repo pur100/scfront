@@ -45,8 +45,8 @@
 
       <div class="menu desktop">
         <h4><router-link to="/tarifs">NOS TARIFS</router-link></h4>
-        <p style="margin: 0 30px">|</p>
-        <h4>ESPACE DEBITEUR</h4>
+        <p id='back_pipe' style="margin: 0 30px">|</p>
+        <h4><router-link to="/espacedebiteur">ESPACE DEBITEUR</router-link></h4>
       </div>
       <div class="mobile" @click="toggleMenu" id="toggle">
         <svg viewBox="0 0 100 80" width="40" height="40">

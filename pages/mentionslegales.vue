@@ -440,7 +440,7 @@ export default {
         company_zip: "Code postal",
         company_city: "Ville",
         company_info: "",
-        company_name: "Nom de votre entreprise",
+        company_name: "",
         company_siret: "SIRET de votre entreprise",
         first_name: "",
         last_name: "",
@@ -497,18 +497,18 @@ export default {
                 company_city: this.company_city,
                 message: this.message
               })
-            this.response_contact = response
+              this.response_contact = response
 
-            this.email = ""
-            this.siren = ""
-            this.first_name = ""
-            this.last_name = ""
-            this.company_siret = ""
-            this.company_name = ""
-            this.company_address = ""
-            this.company_zip = ""
-            this.company_city = ""
-            this.message = ""
+              this.email = ""
+              this.siren = ""
+              this.first_name = ""
+              this.last_name = ""
+              this.company_siret = ""
+              this.company_name = ""
+              this.company_address = ""
+              this.company_zip = ""
+              this.company_city = ""
+              this.message = ""
           },
           clearform() {
             this.email = ""
@@ -523,10 +523,8 @@ export default {
             this.message = ""
           },
           saveCompany() {
-            console.log("inside save Company")
           },
           cancelCompany() {
-            console.log("inside cancel Company")
             this.company_siret = ""
             this.company_address = ""
             this.company_zip = ""

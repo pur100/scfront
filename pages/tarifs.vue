@@ -169,7 +169,7 @@ export default {
         company_zip: "Code postal",
         company_city: "Ville",
         company_info: "",
-        company_name: "Nom de votre entreprise",
+        company_name: "",
         company_siret: "SIRET de votre entreprise",
         first_name: "",
         last_name: "",

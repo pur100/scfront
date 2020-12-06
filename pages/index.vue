@@ -276,9 +276,6 @@ export default {
               company_city: this.company_city,
               message: this.message
             })
-          if (response) {
-            console.log($(".modal_content"))
-          }
           this.response_contact = response
 
           this.email = ""

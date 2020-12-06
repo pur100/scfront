@@ -169,7 +169,7 @@
           </template>
 
           <template v-slot:body>
-            <div class="modal_content">
+            <div class="modal_content" ref="message_modal_content">
               <div class="loading" v-if="!response">
                 <img :src="'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'">
               </div>
@@ -277,6 +277,7 @@ export default {
               message: this.message
             })
           this.response_contact = response
+          console.log(this.$refs["message_modal_content"])
 
           this.email = ""
           this.siren = ""

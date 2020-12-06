@@ -5,6 +5,7 @@
 .home_banner {
   background-color: white;
   height: 70vh;
+  min-height: 475px;
   text-align: center;
   position: relative;
 
@@ -54,6 +55,7 @@
 .home_info {
   background-color: $flash_green;
   height: 60vh;
+  min-height: 450px;
   margin: 0 auto;
   position: relative;
   display:flex;
@@ -163,7 +165,7 @@
       color: $flash_green;
     }
     p {
-      width: 66%;
+      width: 70%;
     }
   }
   .right {

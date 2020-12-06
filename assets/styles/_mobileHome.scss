@@ -3,8 +3,10 @@
   .mentions_legales_block > h2 {
     font-size: 30px !important;
   }
-  .menu {
-    display: none !important;
+  nav, .footer {
+    .menu {
+      display: none !important;
+    }
   }
   .mobile {
     display: block !important;
@@ -111,5 +113,13 @@
     }
   }
 
+.footer {
+  .content {
+    flex-direction: column;
+    ol {
+      padding-inline-start: 0px !important;
+    }
+  }
+}
 
 }

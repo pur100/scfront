@@ -36,8 +36,13 @@
           </div>
           <div class="flex between input_block">
             <div class="input_full flex dir_column around">
-              <label for="email">Email*</label>
-              <input v-model="email" placeholder="" required>
+               <label for="email">Email*</label>
+               <input v-model="email" placeholder="" required>
+            </div>
+          </div>
+          <div class="flex between input_block">
+            <div class="input_full flex dir_column around">
+
             </div>
           </div>
           <div class="flex between input_block">

@@ -1,8 +1,4 @@
 // HEADER
-.menuBurger {
-  height: 180px !important;
-  transition: all 1s cubic-bezier(0.17, 0.04, 0.03, 0.94);
-}
 
 
 .nav {
@@ -68,7 +64,7 @@
 }
 
 .slideDown {
-  height: 100px !important;
+  height: auto !important;
   z-index: 100;
   top: 80px;
   width: 100%;

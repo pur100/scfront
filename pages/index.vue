@@ -25,7 +25,7 @@
                </svg>
              </div>
           <div class="text_block">
-            <h3 class="title">Chaque créance <br>sa solution</h3>
+            <h3 class="title">Chaque créance <br>a sa solution</h3>
             <p class="text">Courir derrière vos clients afin d’obtenir le règlement de vos factures devient vite une activité contre-productive. Chez Solution Créance nous pensons que chaque impayé a sa solution. C’est pourquoi nous mettons notre expérience du recouvrement amiable à votre service.</p>
           </div>
         </div>
@@ -105,14 +105,20 @@
               </div>
             </div>
             <div class="flex between input_block">
+              <div class="input_full flex dir_column around">
+                 <label for="email">Email*</label>
+                 <input v-model="email" placeholder="" required>
+              </div>
+            </div>
+            <div class="flex between input_block">
               <div class="input_group flex dir_column around relative">
                 <label for="siret">SIREN*</label>
                 <input v-model="siren" placeholder="" required>
                 <a @click.prevent="getCompany(), $refs.sirenModal.openModal()" class="sirencall absolute" v-if="siren.length > 0" href="">Vérifier le siren</a>
               </div>
               <div class="input_group flex dir_column around">
-                <label for="email">Email*</label>
-                <input v-model="email" placeholder="" required>
+                <label for="company_name">Raison Sociale*</label>
+                <input v-model="company_name" placeholder="" required>
               </div>
             </div>
               <div class="flex between input_block">
@@ -198,7 +204,7 @@ export default {
         company_zip: "Code postal",
         company_city: "Ville",
         company_info: "",
-        company_name: "Nom de votre entreprise",
+        company_name: "",
         company_siret: "SIRET de votre entreprise",
         first_name: "",
         last_name: "",
@@ -238,7 +244,7 @@ export default {
           console.log(this.siren.replace(/[\s\/]/g, ''))
           const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren.replace(/[\s\/]/g, '')
           const response = await this.$axios.$get(url,{
-                headers: {Authorization: "Bearer " + "f4a15e85-6a24-365d-bb84-bbc3b48ecc41"}
+                headers: {Authorization: "Bearer " + "3b9c2bc8-35b8-3273-9fec-490e3e009ba4"}
           })
           const companies_array = response.etablissements
           this.companies_array = companies_array

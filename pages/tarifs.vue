@@ -57,39 +57,45 @@
       <div class="right">
         <p class="text">Rien de plus simple ! Créez votre compte en remplissant votre formulaire de renseignement, vous pourrez ensuite nous transmettre votre facture impayée par email et nous déléguer la gestion de son recouvrement. Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.</p>
         <div class="form">
-          <form action="" v-on:keydown="formValid" >
-            <div class="flex between input_block">
-              <div class="input_group flex dir_column around">
-                <label for="first_name">Prénom*</label>
-                <input v-model="first_name" placeholder="" required>
-              </div>
-              <div class="input_group flex dir_column around">
-                <label for="last_name">Nom*</label>
-                <input v-model="last_name" placeholder="" required>
-              </div>
-            </div>
-            <div class="flex between input_block">
-              <div class="input_group flex dir_column around relative">
-                <label for="siret">SIREN*</label>
-                <input v-model="siren" placeholder="" required>
-                <a @click.prevent="getCompany(), $refs.sirenModal.openModal()" class="sirencall absolute" v-if="siren.length > 0" href="">Vérifier le siren</a>
-              </div>
-              <div class="input_group flex dir_column around">
-                <label for="email">Email*</label>
-                <input v-model="email" placeholder="" required>
-              </div>
-            </div>
-              <div class="flex between input_block">
-                <div class="input_full flex dir_column around">
-                  <label for="message">Message</label>
-                  <input class="message" v-model="message" placeholder="">
-                </div>
-              </div>
-              <div class="flex between input_block">
-                <button v-show="formIsValid" class="valid" @click.prevent="sendMessage(), $refs.messageModal.openModal()" type="submit">ENVOYER</button>
-                <button v-show="!formIsValid" class="notValid">ENVOYER</button>
-              </div>
-            </form>
+         <form action="" v-on:keydown="formValid" >
+                 <div class="flex between input_block">
+                   <div class="input_group flex dir_column around">
+                     <label for="first_name">Prénom*</label>
+                     <input v-model="first_name" placeholder="" required>
+                   </div>
+                   <div class="input_group flex dir_column around">
+                     <label for="last_name">Nom*</label>
+                     <input v-model="last_name" placeholder="" required>
+                   </div>
+                 </div>
+                 <div class="flex between input_block">
+                   <div class="input_full flex dir_column around">
+                      <label for="email">Email*</label>
+                      <input v-model="email" placeholder="" required>
+                   </div>
+                 </div>
+                 <div class="flex between input_block">
+                   <div class="input_group flex dir_column around relative">
+                     <label for="siret">SIREN*</label>
+                     <input v-model="siren" placeholder="" required>
+                     <a @click.prevent="getCompany(), $refs.sirenModal.openModal()" class="sirencall absolute" v-if="siren.length > 0" href="">Vérifier le siren</a>
+                   </div>
+                   <div class="input_group flex dir_column around">
+                     <label for="company_name">Raison Sociale*</label>
+                     <input v-model="company_name" placeholder="" required>
+                   </div>
+                 </div>
+                   <div class="flex between input_block">
+                     <div class="input_full flex dir_column around">
+                       <label for="message">Message</label>
+                       <input class="message" v-model="message" placeholder="">
+                     </div>
+                   </div>
+                   <div class="flex between input_block">
+                     <button v-show="formIsValid" class="valid" @click.prevent="sendMessage(), $refs.messageModal.openModal()" type="submit">ENVOYER</button>
+                     <button v-show="!formIsValid" class="notValid">ENVOYER</button>
+                   </div>
+                 </form>
           </div>
         </div>
       </div>
@@ -203,7 +209,7 @@ export default {
             console.log(this.siren.replace(/[\s\/]/g, ''))
             const url = "https://api.insee.fr/entreprises/sirene/V3/siret?q=siren:" + this.siren.replace(/[\s\/]/g, '')
             const response = await this.$axios.$get(url,{
-                  headers: {Authorization: "Bearer " + "f4a15e85-6a24-365d-bb84-bbc3b48ecc41"}
+                  headers: {Authorization: "Bearer " + "3b9c2bc8-35b8-3273-9fec-490e3e009ba4"}
             })
             const companies_array = response.etablissements
             this.companies_array = companies_array

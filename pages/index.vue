@@ -170,7 +170,7 @@
 
           <template v-slot:body>
             <div class="modal_content" ref="message_modal_content">
-              <div class="loading" v-if="!response">
+              <div class="loading" ref="message_loader" v-if="!response">
                 <img :src="'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'">
               </div>
               <div class="success" v-if="response_contact.id">
@@ -278,8 +278,7 @@ export default {
             })
           this.response_contact = response
           if (response) {
-            console.log(this.$refs["message_modal_content"])
-            this.$refs["message_modal_content"].innerHTML = "<h3>Merci {{ response_contact.first_name }} !</h3><p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>"
+            this.$refs["message_loader"].innerHTML = ""
           }
 
 

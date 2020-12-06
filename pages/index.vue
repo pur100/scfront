@@ -241,7 +241,7 @@ export default {
         // some code to filter users
       },
       formValid: function () {
-        if (this.siren.length > 7 && this.first_name.length > 0 && this.last_name.length > 0 && this.email.length > 0) {
+        if (this.siren.length > 7 && this.company_name.length > 0 && this.first_name.length > 0 && this.last_name.length > 0 && this.email.length > 0) {
           this.formIsValid = true
         }
       },
@@ -277,7 +277,11 @@ export default {
               message: this.message
             })
           this.response_contact = response
-          console.log(this.$refs["message_modal_content"])
+          if (response) {
+            console.log(this.$refs["message_modal_content"])
+            this.$refs["message_modal_content"].innerHTML("<h3>Merci {{ response_contact.first_name }} !</h3><p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>")
+          }
+
 
           this.email = ""
           this.siren = ""

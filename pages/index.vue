@@ -279,7 +279,7 @@ export default {
           this.response_contact = response
           if (response) {
             console.log(this.$refs["message_modal_content"])
-            this.$refs["message_modal_content"].innerHTML("<h3>Merci {{ response_contact.first_name }} !</h3><p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>")
+            this.$refs["message_modal_content"].innerHTML = "<h3>Merci {{ response_contact.first_name }} !</h3><p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>"
           }
 
 

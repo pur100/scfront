@@ -59,10 +59,10 @@
     </div>
     <transition name="slide">
       <div  v-show="activeMenu" class="" style="position: absolute;" v-bind:class="{ slideDown: activeMenu }">
-        <h4 style="margin: 10px 0px"><router-link to="/tarifs">NOS TARIFS</router-link></h4>
-        <h4 style="margin: 10px 0px"><router-link to="/espacedebiteur">ESPACE DEBITEUR</router-link></h4>
-        <h4 style="margin: 10px 0px"><router-link to="/mentionslegales">MENTIONS LEGALES</router-link></h4>
-        <h4 style="margin: 10px 0px"><router-link to="/charte">CHARTE DEONTOLOGIQUE</router-link></h4>
+        <h4 @click="toggleMenu" style="margin: 10px 0px"><router-link to="/tarifs">NOS TARIFS</router-link></h4>
+        <h4 @click="toggleMenu" style="margin: 10px 0px"><router-link to="/espacedebiteur">ESPACE DEBITEUR</router-link></h4>
+        <h4 @click="toggleMenu" style="margin: 10px 0px"><router-link to="/mentionslegales">MENTIONS LEGALES</router-link></h4>
+        <h4 @click="toggleMenu" style="margin: 10px 0px"><router-link to="/charte">CHARTE DEONTOLOGIQUE</router-link></h4>
       </div>
     </transition>
   </nav>

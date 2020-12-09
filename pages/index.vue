@@ -258,6 +258,7 @@ export default {
           this.companies_array = companies_array
           const company_info = response.etablissements[0]
           this.company_info = company_info
+          console.log(response)
           console.log(company_info)
           console.log(company_info.uniteLegale.denominationUniteLegale)
           console.log(company_info.adresseEtablissement.numeroVoieEtablissement + " " + company_info.adresseEtablissement.libelleVoieEtablissement )
@@ -279,6 +280,7 @@ export default {
               company_city: this.company_city,
               message: this.message
             })
+          console.log(response)
           this.response_contact = response
           if (response) {
             this.waitingResponse = false;

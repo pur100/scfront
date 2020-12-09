@@ -280,11 +280,7 @@ export default {
               company_city: this.company_city,
               message: this.message
               })
-          if (response) {
-            this.waitingResponse = false
-          } else {
-            this.waitingResponse = false
-          }
+          console.log(response)
 
           this.response_contact = response
 

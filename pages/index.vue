@@ -280,12 +280,8 @@ export default {
               company_city: this.company_city,
               message: this.message
               })
-          console.log(response)
-          console.log(response.siren)
-          console.log(response.siren[0])
+
           if (response) {
-            this.waitingResponse = false
-          } else {
             this.waitingResponse = false
           }
 

@@ -405,16 +405,18 @@
 
             <template v-slot:body>
               <div class="modal_content" ref="message_modal_content">
-                <div class="loading" ref="message_loader" v-if="!response">
+                <div class="loading" ref="message_loader" v-if="waitingResponse">
                   <img :src="'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'">
                 </div>
-                <div class="success" v-if="response_contact.id">
-                  <h3>Merci {{ response_contact.first_name }} !</h3>
-                  <p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>
-                </div>
-                <div class="failure" v-else="reponse">
-                  <h3>Oups, il y a eu une erreur</h3>
-                  <p>Veuillez nous contacter ultérieurement, si le problème persiste, contactez nous directement à l'adresse suivante : leny@solutioncreance.fr</p>
+                <div class="answer" v-else>
+                  <div class="success" v-if="response_contact.id">
+                    <h3>Merci {{ response_contact.first_name }} !</h3>
+                    <p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>
+                  </div>
+                  <div class="failure" v-else>
+                    <h3>Oups, il y a eu une erreur</h3>
+                    <p>Veuillez nous contacter ultérieurement, si le problème persiste, contactez nous directement à l'adresse suivante : contact@solutioncreance.fr</p>
+                  </div>
                 </div>
               </div>
             </template>
@@ -436,6 +438,7 @@ export default {
     },
     data() {
       return {
+        waitingResponse: true,
         isActive: true,
         activeCompany: false,
         formIsValid: false,
@@ -502,10 +505,12 @@ export default {
                 company_city: this.company_city,
                 message: this.message
               })
-            this.response_contact = response
             if (response) {
-              this.$refs["message_loader"].innerHTML = ""
+              this.waitingResponse = false
             }
+
+            this.response_contact = response
+
 
 
               this.email = ""

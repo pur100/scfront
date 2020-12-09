@@ -173,7 +173,7 @@
               <div class="loading" ref="message_loader" v-if="waitingResponse">
                 <img :src="'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif'">
               </div>
-              <div class="answer" v-if="!waitingResponse">
+              <div class="answer" v-else>
                 <div class="success" v-if="response_contact.id">
                   <h3>Merci {{ response_contact.first_name }} !</h3>
                   <p>Votre message a bien été envoyé, et nous rentrerons très prochainement en contact avec vous.</p>

@@ -279,9 +279,10 @@ export default {
               company_zip: this.company_zip,
               company_city: this.company_city,
               message: this.message
+              this.waitingResponse = false;
             })
           this.response_contact = response
-          this.waitingResponse = false;
+
 
           this.email = ""
           this.siren = ""

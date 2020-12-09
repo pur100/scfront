@@ -75,6 +75,12 @@
         activeMenu: false
       }
     },
+    created() {
+      console.log("created")
+    },
+    mounted() {
+      console.log("mounted")
+    },
     methods: {
       toggleMenu: function() {
         this.activeMenu = !this.activeMenu;

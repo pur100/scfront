@@ -5,7 +5,7 @@
         <p class="title">La charte déontologique<br>du recouvrement amiable</p>
 
         <div class="text">
--
+
           <p class="p4"><span class="s1"><strong>Solution cr&eacute;ance garantit &agrave; ses clients :</strong></span></p>
           <p class="p3"><br></p>
           <ol class="ol1">

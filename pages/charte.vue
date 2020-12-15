@@ -2,7 +2,6 @@
   <div class="container" id="tarif_container">
     <div class="charte_block_full">
       <div class="wrap">
-
         <p class="title">La charte déontologique<br>du recouvrement amiable</p>
 
         <div class="text">

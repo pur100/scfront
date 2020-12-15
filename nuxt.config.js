@@ -33,6 +33,7 @@ export default {
   modules: ['@nuxtjs/axios'],
 
   axios: {
+    https: true
   },
   server: {
     port: process.env.PORT || 3000, // par défaut : 3000

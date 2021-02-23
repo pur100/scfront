@@ -111,6 +111,12 @@
               </div>
             </div>
             <div class="flex between input_block">
+              <div class="input_full flex dir_column around">
+                 <label for="email">Télephone</label>
+                 <input v-model="phone" placeholder="">
+              </div>
+            </div>
+            <div class="flex between input_block">
               <div class="input_group flex dir_column around relative">
                 <label for="siret">SIREN*</label>
                 <input v-model="siren" placeholder="" required>
@@ -132,7 +138,10 @@
                 <button v-show="!formIsValid" class="notValid">ENVOYER</button>
               </div>
             </form>
+            <p class="disclaimer">* Les données contenues dans ce formulaire sont utilisées uniquement pour nous permettre de prendre contact avec vous.
+            Elles ne sont en aucun cas transférées ou cédées à un tiers et sont effacées sitôt le contact est établi ou au bout d’un mois.</p>
           </div>
+
         </div>
       </div>
       <modal ref="sirenModal">
@@ -217,6 +226,7 @@ export default {
         first_name: "",
         last_name: "",
         email: "",
+        phone: "",
         message: "",
         companies_array: [],
         response_contact: "RESPONSE CONTACT"
@@ -270,6 +280,7 @@ export default {
           const url = "https://scbackapi.herokuapp.com/contacts"
           const response = await this.$axios.$post(url,{
               email: this.email,
+              phone: this.phone,
               siren: this.siren,
               first_name: this.first_name,
               last_name: this.last_name,
@@ -288,6 +299,7 @@ export default {
           this.response_contact = response
 
           this.email = ""
+          this.phone = ""
           this.siren = ""
           this.first_name = ""
           this.last_name = ""

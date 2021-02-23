@@ -62,10 +62,9 @@ export const actions= {
   },
 
   async getUserData ({ commit, state}) {
-    console.log(state.csrf_token)
-    const user_id = id
-    console.log(user_id)
-    const result = await this.$axios.$get('http://localhost:3000/users/1' ,{
+    const user_id = state.user.id
+    const url = 'http://localhost:3000/users/' + user_id
+    const result = await this.$axios.$get(url ,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)

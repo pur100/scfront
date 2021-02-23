@@ -1,7 +1,10 @@
 <template>
   <div class="container">
+  <h2>hello</h2>
 
-
+  <h1>id? {{ user_id }}</h1>
+  {{ user_data }}
+  <button @click="getUserData(user_id)">get data</button>
   <div style="margin: 0 auto">
       <h1>DASHBOARD</h1>
       <div style="width: calc(80vw - 40px); margin: 40px; padding: 20px;">
@@ -20,7 +23,6 @@
       </div>
   </div>
 
-  <h1>modal ?</h1>
 
   <modal ref="newInvoice">
      <template v-slot:header>
@@ -43,6 +45,7 @@
        </div>
      </template>
    </modal>
+  }
 
 
 </div>
@@ -56,6 +59,7 @@ export default {
   data() {
     return {
       user_id: this.$store.state.user.id,
+      user_data: this.$store.state.user.data,
       user_info: ""
     }
   },
@@ -71,6 +75,7 @@ export default {
   },
   methods: {
     async getUserData(user_id) {
+
       const get_user_data = await this.$store.dispatch('getUserData', user_id)
     },
   }

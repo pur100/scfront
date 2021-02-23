@@ -47,6 +47,10 @@
         <h4><router-link to="/tarifs">NOS TARIFS</router-link></h4>
         <p id='back_pipe' style="margin: 0 30px">|</p>
         <h4><router-link to="/espacedebiteur">ESPACE DEBITEUR</router-link></h4>
+        <p id='back_pipe' style="margin: 0 30px">|</p>
+        <h4 v-if="loggedIn"><router-link to="/dashboard">MON COMPTE</router-link></h4>
+        <h4 v-else><router-link to="/login">ME CONNECTER</router-link></h4>
+
       </div>
       <div class="mobile" @click="toggleMenu" id="toggle">
         <svg viewBox="0 0 100 80" width="40" height="40">
@@ -76,10 +80,11 @@
       }
     },
     created() {
-      console.log("created")
     },
     mounted() {
-      console.log("mounted")
+    },
+    computed: {
+      loggedIn() { return this.$store.state.logged_in },
     },
     methods: {
       toggleMenu: function() {

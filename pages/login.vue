@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h4>Vous n'avez pas de compte ? <router-link to="/signup">Créez-en un !</router-link></h4>
     <div>
         <br/>
         <input v-model="username" placeholder="username">

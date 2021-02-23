@@ -7,6 +7,7 @@
       <div style="width: calc(80vw - 40px); margin: 40px; padding: 20px;">
         <div class="" style="display: flex; justify-content: space-between; ">
           <h3>Mes Factures</h3>
+          {{countUserInvoices}}
           <button @click="$refs.newInvoice.openModal()">Nouvelle facture</button>
         </div>
         <div class="invoices">
@@ -67,7 +68,8 @@ export default {
   },
   computed: {
     userData() { return this.$store.state.user },
-    userInvoices() { return this.$store.state.user_invoices }
+    userInvoices() { return this.$store.state.user_invoices },
+    countUserInvoices() { return this.$store.state.user_invoices },
   },
   methods: {
     async getUserData(user_id) {

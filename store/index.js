@@ -17,6 +17,8 @@ export const plugins = getPlugins()
 
 export const state = () => ({
   counter: 0,
+  live_url: "https://scbackapi.herokuapp.com/",
+  test_url: "http://localhost:3000/",
   ip: "ok",
   csrf_token: "token",
   result_log_out: "test",
@@ -36,9 +38,8 @@ export const actions= {
   async login ({ commit }, values) {
 
     // logIn(values)
-    const test_url = "http://localhost:3000"
-    const url = "https://nuxt-sc.herokuapp.com/"
-    const result = await this.$axios.$post(url + "login",{
+
+    const result = await this.$axios.$post(state.live_url + "login",{
       email: values.username,
       password: values.password,
     })
@@ -72,11 +73,10 @@ export const actions= {
   async logout ({ commit, state }) {
     // logIn(values)
     console.log("logging_out")
-    const test_url = 'http://localhost:3000'
-    const url = "https://nuxt-sc.herokuapp.com/"
+
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
-    const result = await this.$axios.$delete(url + "login",
+    const result = await this.$axios.$delete(state.live_url + "login",
     {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
@@ -86,9 +86,8 @@ export const actions= {
 
   async getUserData ({ commit, state}) {
     const user_id = state.user.id
-    const test_url = 'http://localhost:3000/'
-    const url = "https://nuxt-sc.herokuapp.com/"
-    const result = await this.$axios.$get(url + "users/" + user_id,{
+
+    const result = await this.$axios.$get(state.live_url + "users/" + user_id,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
@@ -98,10 +97,9 @@ export const actions= {
   async signup ({ commit }, values) {
     console.log("store values : ")
     console.log(values)
-    const test_url = "http://localhost:3000/"
-    const url = "https://nuxt-sc.herokuapp.com/"
+
     // logIn(values)
-    const result = await this.$axios.$post(url + "users",{
+    const result = await this.$axios.$post(state.live_url + "users",{
       email: values.username,
       password: values.password,
       password: values.password_confirmation

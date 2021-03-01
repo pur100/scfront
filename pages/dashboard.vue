@@ -103,9 +103,8 @@ export default {
       console.log(this.inputInvoice)
     },
     async deleteInvoice(event) {
-      const test_url = "http://localhost:3000/invoices/"
-      const url = "https://nuxt-sc.herokuapp.com/invoices"
-      const result = await this.$axios.$delete(url + event.target.dataset.id)
+
+      const result = await this.$axios.$delete(state.live_url + "invoices/" + event.target.dataset.id)
       console.log(result)
       await this.$store.dispatch('getUserData', this.$store.state.user_id)
 
@@ -121,11 +120,10 @@ export default {
       Object.entries(params).forEach(
         ([key, value]) => formData.append(key, value)
       )
-      const test_url = "http://localhost:3000/invoices/"
-      const _url = "https://nuxt-sc.herokuapp.com/invoices/"
+
 
       // Finally, sending the POST request with our beloved Axios
-      const result = await this.$axios.$post(url,formData)
+      const result = await this.$axios.$post(state.live_url + "invoices" ,formData)
       if(result) {
         await this.$store.dispatch('getUserData', this.$store.state.user_id)
         document.getElementById('close_modal').click()

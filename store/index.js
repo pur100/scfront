@@ -36,7 +36,9 @@ export const actions= {
   async login ({ commit }, values) {
 
     // logIn(values)
-    const result = await this.$axios.$post('http://localhost:3000/login',{
+    const test_url = "http://localhost:3000"
+    const url = "https://nuxt-sc.herokuapp.com/"
+    const result = await this.$axios.$post(url + "login",{
       email: values.username,
       password: values.password,
     })
@@ -70,9 +72,11 @@ export const actions= {
   async logout ({ commit, state }) {
     // logIn(values)
     console.log("logging_out")
+    const test_url = 'http://localhost:3000'
+    const url = "https://nuxt-sc.herokuapp.com/"
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
-    const result = await this.$axios.$delete('http://localhost:3000/login',
+    const result = await this.$axios.$delete(url + "login",
     {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
@@ -82,8 +86,9 @@ export const actions= {
 
   async getUserData ({ commit, state}) {
     const user_id = state.user.id
-    const url = 'http://localhost:3000/users/' + user_id
-    const result = await this.$axios.$get(url ,{
+    const test_url = 'http://localhost:3000/'
+    const url = "https://nuxt-sc.herokuapp.com/"
+    const result = await this.$axios.$get(url + "users/" + user_id,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
@@ -93,8 +98,10 @@ export const actions= {
   async signup ({ commit }, values) {
     console.log("store values : ")
     console.log(values)
+    const test_url = "http://localhost:3000/"
+    const url = "https://nuxt-sc.herokuapp.com/"
     // logIn(values)
-    const result = await this.$axios.$post('http://localhost:3000/users',{
+    const result = await this.$axios.$post(url + "users",{
       email: values.username,
       password: values.password,
       password: values.password_confirmation

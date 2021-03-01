@@ -104,7 +104,7 @@ export default {
     },
     async deleteInvoice(event) {
 
-      const result = await this.$axios.$delete(state.live_url + "invoices/" + event.target.dataset.id)
+      const result = await this.$axios.$delete(this.$store.state.live_url + "invoices/" + event.target.dataset.id)
       console.log(result)
       await this.$store.dispatch('getUserData', this.$store.state.user_id)
 
@@ -123,7 +123,7 @@ export default {
 
 
       // Finally, sending the POST request with our beloved Axios
-      const result = await this.$axios.$post(state.live_url + "invoices" ,formData)
+      const result = await this.$axios.$post(this.$store.state.live_url + "invoices" ,formData)
       if(result) {
         await this.$store.dispatch('getUserData', this.$store.state.user_id)
         document.getElementById('close_modal').click()

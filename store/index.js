@@ -94,7 +94,7 @@ export const actions= {
     commit('SET_USER_INVOICES', result.invoices)
     console.log(result)
   },
-  async signup ({ commit }, values) {
+  async signup ({ commit, state }, values) {
     console.log("store values : ")
     console.log(values)
 

@@ -15,7 +15,7 @@
           <h3>Statut</h3>
           <button @click="$refs.newInvoice.openModal()">Nouvelle facture</button>
         </div>
-        <div v-if="userInvoices.length >= 1" class="invoices">
+        <div v-if="userInvoices" class="invoices">
           <div v-for="invoice in userInvoices" class="invoice" style="display: flex;justify-content: space-between;">
             <h4>{{ invoice.id }}</h4>
             <h4>{{ invoice.amount }}</h4>

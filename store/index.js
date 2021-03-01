@@ -35,7 +35,7 @@ export const actions= {
     commit('SET_IP', ip)
   },
 
-  async login ({ commit }, values) {
+  async login ({ commit, state }, values) {
 
     // logIn(values)
 

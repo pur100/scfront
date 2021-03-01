@@ -9,15 +9,22 @@
   <div style="margin: 0 auto">
       <div style="width: calc(80vw - 40px); margin: 40px; padding: 20px;">
         <div class="" style="display: flex; justify-content: space-between; ">
-          <h3>Mes Factures</h3>
+          <h3>ID</h3>
+          <h3>Montant</h3>
+          <h3>Date d'envoi</h3>
+          <h3>Statut</h3>
           <button @click="$refs.newInvoice.openModal()">Nouvelle facture</button>
         </div>
-        <div v-if="userInvoices.length > 1" class="invoices">
+        <div v-if="userInvoices.length >= 1" class="invoices">
           <div v-for="invoice in userInvoices" class="invoice" style="display: flex;justify-content: space-between;">
-            <h4>{{ invoice.amount }}</h4>
             <h4>{{ invoice.id }}</h4>
+            <h4>{{ invoice.amount }}</h4>
             <h4>{{ invoice.created_at }}</h4>
-            <a :href="invoice.file">see file</a>
+            <h4>{{ invoice.status }}</h4>
+            <div class="links">
+              <a :href="invoice.file" target="_blank"><img width="22px" src="https://freeiconshop.com/wp-content/uploads/edd/eye-outline.png" alt=""></a>
+              <div :data-id="invoice.id" class="destroy" @click="deleteInvoice">Destroy</div>
+            </div>
           </div>
         </div>
       </div>
@@ -44,7 +51,7 @@
 
      <template v-slot:footer>
        <div>
-         <button @click="$refs.modalName.closeModal()">Cancel</button>
+         <button id="close_modal" @click="$refs.newInvoice.closeModal()">Cancel</button>
          <button @click="createInvoice">Save</button>
        </div>
      </template>
@@ -95,26 +102,31 @@ export default {
       this.inputInvoice = event.target.files[0]
       console.log(this.inputInvoice)
     },
+    async deleteInvoice(event) {
+
+      const result = await this.$axios.$delete('http://localhost:3000/invoices/'+ event.target.dataset.id)
+      console.log(result)
+      await this.$store.dispatch('getUserData', this.$store.state.user_id)
+
+    },
     async createInvoice(){
-      console.log('creating invoice')
       const params = {
               'amount': this.amount,
               'user_id': this.user_id,
               'picture': this.inputInvoice
             }
-      console.log(params)
       let formData = new FormData()
 
       Object.entries(params).forEach(
         ([key, value]) => formData.append(key, value)
       )
-      console.log("-----------------------forlm DZATA ----------------")
-      console.log(formData)
+
       // Finally, sending the POST request with our beloved Axios
       const result = await this.$axios.$post('http://localhost:3000/invoices',
         formData)
       if(result) {
         await this.$store.dispatch('getUserData', this.$store.state.user_id)
+        document.getElementById('close_modal').click()
       }
 
     },

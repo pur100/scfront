@@ -70,12 +70,13 @@ export const actions= {
   async logout ({ commit, state }) {
     // logIn(values)
     console.log("logging_out")
+    commit('CLEAN_STATE')
+    commit('LOGGED_IN', false)
     const result = await this.$axios.$delete('http://localhost:3000/login',
     {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
-    commit('CLEAN_STATE')
-    commit('LOGGED_IN', false)
+
     window.location = '/login'
   },
 

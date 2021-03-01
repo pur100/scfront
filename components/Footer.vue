@@ -3,6 +3,7 @@
     <div class="content flex between">
       <div class="credits">
         <p>@ Solution Créance 2020 - dev by pur100</p>
+        <i class="fab fa-facebook"></i>
       </div>
       <ul class="menu flex around">
         <ol><router-link to="/mentionslegales">Mentions légales</router-link></ol>

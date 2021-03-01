@@ -29,6 +29,10 @@
 
 // GENERAL
 
+.visible {
+  display: block !important;
+}
+
 .container {
   margin: 0 auto;
   width: 100vw;

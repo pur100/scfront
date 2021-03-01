@@ -239,6 +239,7 @@ export default {
       first_nameLength() { return this.first_name.length > 0},
       last_nameLength() { return this.last_name.length > 0},
       emailLength() { return this.email.length > 0},
+
     },
     methods: {
       scrollMeTo(refName) {

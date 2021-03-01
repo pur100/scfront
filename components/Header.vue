@@ -72,7 +72,8 @@
   export default {
     data() {
       return {
-        activeMenu: false
+        activeMenu: false,
+        access_expiring_date: this.$store.state.access_expiring_date
       }
     },
     created() {
@@ -80,12 +81,22 @@
     },
     mounted() {
       console.log("mounted")
-    },
+      var d1 = new Date()
+      var d2 = new Date(this.$store.state.access_expiring_date)
+      var d3 = new Date(d2.getTime() - 600000)
+      console.log(d3)
+      if (d1.getTime() >= d3.getTime()) {
+        const flushing = this.$store.dispatch('logout')
+      }
+          },
     methods: {
       toggleMenu: function() {
         this.activeMenu = !this.activeMenu;
         // some code to filter users
       },
+      handler: function handler(event) {
+          const logout = this.$store.dispatch('logout')
+         }
     }
   }
 </script>

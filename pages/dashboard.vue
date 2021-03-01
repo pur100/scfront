@@ -1,18 +1,18 @@
 <template>
-  <div class="container">
-  <h2>hello</h2>
+  <div class="container" style="flex-direction: column;">
+    {{user_id}}
+    <h1>hello</h1>
+    {{access_expiring_date}}
+    {{access_expiring_date}}
 
-  <h1>id? {{ user_id }}</h1>
-  {{ user_data }}
   <button @click="getUserData(user_id)">get data</button>
   <div style="margin: 0 auto">
-      <h1>DASHBOARD</h1>
       <div style="width: calc(80vw - 40px); margin: 40px; padding: 20px;">
         <div class="" style="display: flex; justify-content: space-between; ">
           <h3>Mes Factures</h3>
           <button @click="$refs.newInvoice.openModal()">Nouvelle facture</button>
         </div>
-        <div class="invoices">
+        <div v-if="userInvoices.length > 1" class="invoices">
           <div v-for="invoice in userInvoices" class="invoice" style="display: flex;justify-content: space-between;">
             <h4>{{ invoice.amount }}</h4>
             <h4>{{ invoice.id }}</h4>
@@ -22,6 +22,8 @@
         </div>
       </div>
   </div>
+
+  <h1 @click="refresh">refresh</h1>
 
 
   <modal ref="newInvoice">
@@ -34,24 +36,28 @@
        <input v-model="amount" placeholder="" name="amount">
        <br>
       <label for="invoice">Facture au format .pdf</label>
-       <input v-on:change="invoice_file" type="file" name="invoice_file" placeholder="facture.pdf">
+       <input v-on:change="uploadFile" type="file" name="invoice_file" placeholder="facture.pdf">
        <br>
+       {{amount}}
+       invoice_file => {{invoice_file}}
      </template>
 
      <template v-slot:footer>
        <div>
          <button @click="$refs.modalName.closeModal()">Cancel</button>
-         <button @click="$refs.modalName.closeModal()">Save</button>
+         <button @click="createInvoice">Save</button>
        </div>
      </template>
    </modal>
-  }
+
+
 
 
 </div>
 </template>
 
 <script>
+
 import { mapMutations } from 'vuex'
 import Modal from "@/components/Modal";
 
@@ -60,7 +66,10 @@ export default {
     return {
       user_id: this.$store.state.user.id,
       user_data: this.$store.state.user.data,
-      user_info: ""
+      access_expiring_date: this.$store.state.access_expiring_date,
+      user_info: "",
+        amount: 0,
+      invoice_file: null
     }
   },
   components: {
@@ -68,12 +77,47 @@ export default {
   },
   created() {
     console.log('created')
+
+  },
+  mounted () {
+
   },
   computed: {
     userData() { return this.$store.state.user },
-    userInvoices() { return this.$store.state.user_invoices }
-  },
+    userInvoices() { return this.$store.state.user_invoices },
+
+      },
   methods: {
+    async refresh(){
+      const refreshed = await this.$store.dispatch('refreshTokens')
+    },
+    uploadFile(event) {
+      this.inputInvoice = event.target.files[0]
+      console.log(this.inputInvoice)
+    },
+    async createInvoice(){
+      console.log('creating invoice')
+      const params = {
+              'amount': this.amount,
+              'user_id': this.user_id,
+              'picture': this.inputInvoice
+            }
+      console.log(params)
+      let formData = new FormData()
+
+      Object.entries(params).forEach(
+        ([key, value]) => formData.append(key, value)
+      )
+      console.log("-----------------------forlm DZATA ----------------")
+      console.log(formData)
+      // Finally, sending the POST request with our beloved Axios
+      const result = await this.$axios.$post('http://localhost:3000/invoices',
+        formData)
+      if(result) {
+        await this.$store.dispatch('getUserData', this.$store.state.user_id)
+      }
+
+    },
     async getUserData(user_id) {
 
       const get_user_data = await this.$store.dispatch('getUserData', user_id)

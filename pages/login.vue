@@ -30,6 +30,8 @@
         </div>
       </div>
 
+      <h1 class="errors" style="display: none;color: red">{{ errors }} errors</h1>
+
 
     </div>
   </div>
@@ -58,6 +60,7 @@ export default {
   },
   computed: {
     userData() { return this.$store.state.user },
+    errors() { return this.$store.state.errors },
     counter() { return this.$store.state.counter },
     loggedIn() { return this.$store.state.logged_in },
     samePasswords() { return this.password === this.passwordRepeat },

@@ -22,6 +22,8 @@ export const state = () => ({
   result_log_out: "test",
   user: "user data",
   user_invoices: "user invoices",
+  access_expiring_date: null,
+  errors: null,
   logged_in: false
 })
 
@@ -32,33 +34,49 @@ export const actions= {
   },
 
   async login ({ commit }, values) {
-    console.log("store values : ")
-    console.log(values)
+
     // logIn(values)
     const result = await this.$axios.$post('http://localhost:3000/login',{
       email: values.username,
       password: values.password,
     })
     console.log(result)
-    commit('SET_CSRF_TOKEN', result.session.access)
-    commit('SET_USER', result.user)
-    commit('SET_USER_INVOICES', result.invoices)
-    commit('increment')
-    commit('LOGGED_IN', true)
+    if(result.session) {
+      commit('SET_CSRF_TOKEN', result.session.access)
+      commit('SET_USER', result.user)
+      commit('SET_EXPIRING_DATE', result.session.access_expires_at)
+      commit('SET_USER_INVOICES', result.invoices)
+      commit('increment')
+      commit('LOGGED_IN', true)
+      window.location = "/dashboard"
+    } else {
+      commit('SET_ERRORS', result.error_message)
+      document.getElementsByClassName('errors')[0].classList.add("visible")
+    }
+
     // if (result.session.access) {
     //   window.location = "/dashboard"
     //   return
     // }
     // do something for errrors
   },
+  async refreshTokens({ commit, state }) {
+    const result = await this.$axios.$post('http://localhost:3000/refresh_by_access',{
+      headers: {Authorization: "Bearer " + state.csrf_token}
+    })
+    console.log(result)
+  },
+
   async logout ({ commit, state }) {
-    console.log(state.csrf_token)
     // logIn(values)
-    const result = await this.$axios.$delete('http://localhost:3000/login',{
+    console.log("logging_out")
+    const result = await this.$axios.$delete('http://localhost:3000/login',
+    {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
+    window.location = '/login'
   },
 
   async getUserData ({ commit, state}) {
@@ -68,6 +86,7 @@ export const actions= {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
+    commit('SET_USER_INVOICES', result.invoices)
     console.log(result)
   },
   async signup ({ commit }, values) {
@@ -102,6 +121,12 @@ export const mutations = {
   SET_USER(state,user) {
     state.user = user
   },
+  SET_ERRORS(state,errors) {
+    state.errors = errors
+  },
+  SET_EXPIRING_DATE(state, date_time) {
+    state.access_expiring_date = date_time
+  },
   SET_USER_INVOICES(state,user_invoices) {
     state.user_invoices = user_invoices
   },
@@ -110,6 +135,11 @@ export const mutations = {
     state.ip = ""
     state.csrf_token = ""
     state.counter = 0
+    state.errors = null
+    state.access_expiring_date = null
+    state.user_invoices = null
+    state.errors = null
+    state.logged_in = false
   },
   LOGGED_IN(state, boolean) {
     state.logged_in = boolean

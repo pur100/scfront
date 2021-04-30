@@ -2,12 +2,28 @@
   <div class="container">
     <div>
         <h1>signUp</h1>
+
+        <input v-model="first_name" required placeholder="Prénom">
         <br/>
-        <input v-model="username" placeholder="username">
+
+        <input v-model="last_name" required placeholder="Nom">
         <br/>
-        <input v-model="password" placeholder="password" type="password">
+
+        <input v-model="company_name" required placeholder="Entreprise">
         <br/>
-        <input v-model="passwordRepeat" placeholder="repeat password" type="password">
+
+        <input v-model="siret" required placeholder="SIRET">
+        <br/>
+
+
+        <input v-model="tel" placeholder="Téléphone">
+        <br/>
+
+        <input v-model="username" required placeholder="E-mail">
+        <br/>
+        <input v-model="password" required placeholder="password" type="password">
+        <br/>
+        <input v-model="passwordRepeat" required placeholder="repeat password" type="password">
         <br/>
         {{ samePasswords }}
         <br/>
@@ -50,7 +66,7 @@ export default {
         alert('password too short')
         return
       }
-      const credentials = await this.$store.dispatch('signup', {username: this.username,password: this.password, password_confirmation: this.passwordRepeat})
+      const credentials = await this.$store.dispatch('signup', {username: this.username,password: this.password, password_confirmation: this.passwordRepeat, first_name: this.first_name, last_name: this.last_name, company_name: this.company_name, siret: this.siret, tel: this.tel})
     }
   }
 }

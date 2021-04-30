@@ -47,6 +47,8 @@
         <h4><router-link to="/tarifs">NOS TARIFS</router-link></h4>
         <p id='back_pipe' style="margin: 0 30px">|</p>
         <h4><router-link to="/espacedebiteur">ESPACE DEBITEUR</router-link></h4>
+        <p id='back_pipe' style="margin: 0 30px">|</p>
+        <h4><router-link to="/dashboard">DASHBOARD</router-link></h4>
       </div>
       <div class="mobile" @click="toggleMenu" id="toggle">
         <svg viewBox="0 0 100 80" width="40" height="40">
@@ -81,13 +83,7 @@
     },
     mounted() {
       console.log("mounted")
-      var d1 = new Date()
-      var d2 = new Date(this.$store.state.access_expiring_date)
-      var d3 = new Date(d2.getTime() - 600000)
-      console.log(d3)
-      if (d1.getTime() >= d3.getTime()) {
-        const flushing = this.$store.dispatch('logout')
-      }
+
           },
     methods: {
       toggleMenu: function() {

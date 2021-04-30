@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="tarif_container">
+  <div class="" id="tarif_container">
     <div class="tarifs_block_full">
       <div class="wrap">
         <h3 class="title">NOS TARIFS</h3>

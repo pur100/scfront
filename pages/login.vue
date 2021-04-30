@@ -6,7 +6,6 @@
         <br/>
         <input v-model="password" placeholder="password" type="password">
         <br/>
-        <input v-model="passwordRepeat" placeholder="repeat password" type="password">
         <br/>
         same passwords ?{{ samePasswords }}
         <br/>
@@ -101,9 +100,10 @@ input{
   padding:4px;
 }
 
+
 .container {
+  min-height: 80vh;
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

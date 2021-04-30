@@ -39,7 +39,7 @@ export const actions= {
 
     // logIn(values)
 
-    const result = await this.$axios.$post(state.live_url + "login",{
+    const result = await this.$axios.$post(state.test_url + "login",{
       email: values.username,
       password: values.password,
     })
@@ -70,13 +70,24 @@ export const actions= {
     console.log(result)
   },
 
+  // async front_logout({ commit, state}) {
+  //   console.log("front_logout")
+  //   if (!state.logged_in) {
+  //     console.log("logging_out")
+  //     commit('CLEAN_STATE')
+  //     alert('break')
+  //     commit('LOGGED_IN', false)
+  //     window.location = '/login'
+  //   }
+  // },
+
   async logout ({ commit, state }) {
     // logIn(values)
     console.log("logging_out")
 
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
-    const result = await this.$axios.$delete(state.live_url + "login",
+    const result = await this.$axios.$delete(state.test_url + "login",
     {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
@@ -87,7 +98,7 @@ export const actions= {
   async getUserData ({ commit, state}) {
     const user_id = state.user.id
 
-    const result = await this.$axios.$get(state.live_url + "users/" + user_id,{
+    const result = await this.$axios.$get(state.test_url + "users/" + user_id,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
@@ -99,10 +110,15 @@ export const actions= {
     console.log(values)
 
     // logIn(values)
-    const result = await this.$axios.$post(state.live_url + "users",{
+    const result = await this.$axios.$post(state.test_url + "users",{
       email: values.username,
       password: values.password,
-      password: values.password_confirmation
+      password_confirmation: values.password_confirmation,
+      first_name: values.first_name,
+      last_name: values.last_name,
+      company_name: values.company_name,
+      tel: values.tel,
+      company_siret: values.siret
     })
     commit('SET_CSRF_TOKEN', result.session.access)
     commit('SET_USER', result.user)

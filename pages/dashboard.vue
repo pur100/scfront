@@ -56,10 +56,6 @@
        </div>
      </template>
    </modal>
-
-
-
-
 </div>
 </template>
 
@@ -87,7 +83,14 @@ export default {
 
   },
   mounted () {
-
+    var d1 = new Date()
+    var d2 = new Date(this.$store.state.access_expiring_date)
+    var d3 = new Date(d2.getTime() - 600000)
+    console.log(d3)
+    if (d1.getTime() >= d3.getTime()) {
+      console.log("needs logout")
+      const flushing = this.$store.dispatch('front_logout')
+    }
   },
   computed: {
     userData() { return this.$store.state.user },
@@ -104,7 +107,7 @@ export default {
     },
     async deleteInvoice(event) {
 
-      const result = await this.$axios.$delete(this.$store.state.live_url + "invoices/" + event.target.dataset.id)
+      const result = await this.$axios.$delete(this.$store.state.test_url + "invoices/" + event.target.dataset.id)
       console.log(result)
       await this.$store.dispatch('getUserData', this.$store.state.user_id)
 
@@ -123,7 +126,7 @@ export default {
 
 
       // Finally, sending the POST request with our beloved Axios
-      const result = await this.$axios.$post(this.$store.state.live_url + "invoices" ,formData)
+      const result = await this.$axios.$post(this.$store.state.test_url + "invoices" ,formData)
       if(result) {
         await this.$store.dispatch('getUserData', this.$store.state.user_id)
         document.getElementById('close_modal').click()

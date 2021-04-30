@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="home_container">
     <div class="home_banner">
       <div class="content">
         <div class="titles">
@@ -45,7 +45,7 @@
             </div>
           <div class="text_block">
             <h3 class="title">Identifier l'origine <br>de l'impayé</h3>
-            <p class="text">À l’issu de chaque dossier, vous recevrez un rapport de prévention du risque révélant les raisons du retard de paiement et les solutions à mettre en place afin d’éviter toute récidive.</p>
+            <p class="text">À l’issu de chaque dossier, vous recevrez une <strong>fiche de synthèse</strong> révélant les raisons du retard de paiement ainsi que les informations que nous avons récoltées et qui ont permis d’aboutir à une solution.</p>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
       <div class="right">
         <p class="text">Pour bénéficier de nos services, rien de plus simple !
         Remplissez le formulaire* ci-dessous pour recevoir notre message de bienvenue.
-        Vous pourrez ensuite nous transmettre votre facture impayée par email ou via votre espace client et nous déléguer la gestion de son recouvrement.
+        Vous pourrez ensuite nous transmettre votre facture impayée par email ou via votre espace client et nous déléguer la gestion de son recouvrement.<br>
         (Le dépôt de votre facture est gratuit, nous nous rémunérons uniquement à la réussite.)</p>
         <div class="form">
           <form action="" v-on:keydown="formValid" >

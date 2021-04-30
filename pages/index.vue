@@ -282,7 +282,7 @@ export default {
         async sendMessage() {
           const url = "http://scbackapi.herokuapp.com/contacts"
           const urltest = "http://localhost:3000/contacts"
-          const response = await this.$axios.$post("http://localhost:3000/contacts",{
+          const response = await this.$axios.$post("http://scbackapi.herokuapp.com/contacts",{
               email: this.email,
               phone: this.phone,
               siren: this.siren,

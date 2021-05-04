@@ -1,33 +1,35 @@
 <template>
-  <div class="container">
+  <div class="container" style="min-height: 84vh;">
     <div>
-        <h1>signUp</h1>
+        <h3>Enregistrez-vous afin de bénéficier de nos services :</h3>
+        <h6 style="margin-top: 10px">Vous avez déjà un compte ? <a href="/login" style="text-decoration: underline!important">Connectez-vous!</a></h6>
+        <br>
+        <div class="signupform" style="width: 360px;margin: 0 auto;">
+          <div class="signup_row">
+            <input v-model="first_name" required placeholder="Prénom">
+            <input v-model="last_name" required placeholder="Nom">
+          </div>
 
-        <input v-model="first_name" required placeholder="Prénom">
-        <br/>
-
-        <input v-model="last_name" required placeholder="Nom">
-        <br/>
-
-        <input v-model="company_name" required placeholder="Entreprise">
-        <br/>
-
-        <input v-model="siret" required placeholder="SIRET">
-        <br/>
+          <div class="full_row">
+            <input style="width:94%;"v-model="company_name" required placeholder="Entreprise">
+          </div>
 
 
-        <input v-model="tel" placeholder="Téléphone">
-        <br/>
+          <div class="signup_row">
+            <input v-model="siret" required placeholder="SIRET">
+            <input v-model="tel" placeholder="Téléphone">
+          </div>
 
-        <input v-model="username" required placeholder="E-mail">
-        <br/>
-        <input v-model="password" required placeholder="password" type="password">
-        <br/>
-        <input v-model="passwordRepeat" required placeholder="repeat password" type="password">
-        <br/>
-        {{ samePasswords }}
-        <br/>
-        <button @click="createUser">Submit</button>
+          <div class="full_row">
+            <input style="width:94%;"v-model="username" required placeholder="E-mail">
+          </div>
+          <input v-model="password" required placeholder="password" type="password">
+          <input v-model="passwordRepeat" required placeholder="repeat password" type="password">
+          <br>
+          <br>
+          <button class="side_buttons" @click="createUser">Créez votre compte</button>
+        </div>
+
       </div>
     </div>
   </div>

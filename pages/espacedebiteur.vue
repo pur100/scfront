@@ -1,6 +1,6 @@
 <template>
   <div class="container" >
-    <div id="ml_container">
+    <div id="ml_container" >
       <div class="mentions_legales_block">
           <h2>
           Espace Débiteur
@@ -79,7 +79,7 @@ export default {
 <style>
 #ml_container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 83vh;
   display: flex;
   justify-content: center;
   align-items: center;

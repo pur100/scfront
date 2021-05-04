@@ -1,32 +1,23 @@
 <template>
-  <div class="container">
+  <div class="login_container" style="flex-direction: column;">
+    <div class="log_message" style="width: 30%; margin: 0 auto;">
+      <h4>Veuillez vous connecter afin d'accéder à votre compte et suivre l'état de vos créances.</h4>
+      <h6 style="margin-top: 10px">Pas de compte ? <a href="/signup" style="text-decoration: underline!important">Enregistrez-vous!</a></h6>
+    </div>
+
     <div>
         <br/>
-        <input v-model="username" placeholder="username">
+        <input v-model="username" placeholder="Identifiant">
         <br/>
-        <input v-model="password" placeholder="password" type="password">
+        <input v-model="password" placeholder="Mot de passe" type="password">
         <br/>
         <br/>
-        same passwords ?{{ samePasswords }}
         <br/>
-        <button v-show="!loggedIn" @click="login">Submit</button>
-        <button v-show="loggedIn" @click="logout">logout</button>
+        <button class="side_buttons" v-show="!loggedIn" @click="login">Connexion</button>
 
-        <div style="max-width: 500px; margin: 0 auto">Are you logged ? {{ loggedIn }}</div>
 
-        <div v-show="loggedIn">
-          <div style="max-width: 500px; margin: 0 auto">Hello {{ userData.email }} :)</div>
-          <div style="max-width: 500px; margin: 0 auto">your ID is {{ userData.id }}</div>
-          <div style="max-width: 500px; margin: 0 auto">and you were created {{ userData.created_at }}</div>
-        </div>
 
-        <h1>STATE COUNTER : {{ counter }}</h1>
-        <div style="height: auto; width: 300px; background-color:pink" >
-            <button @click="toggleText"><span v-if="!isActive">SEE</span><span v-else >UNSEE</span></button>
-            <transition name="fade">
-              <div v-show="isActive" ><h1>I have been toggled</h1></div>
-            </transition>
-        </div>
+
       </div>
 
       <h1 class="errors" style="display: none;color: red">{{ errors }} errors</h1>
@@ -101,8 +92,8 @@ input{
 }
 
 
-.container {
-  min-height: 80vh;
+.login_container {
+  min-height: 83vh;
   margin: 0 auto;
   display: flex;
   justify-content: center;

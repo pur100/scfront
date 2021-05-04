@@ -70,16 +70,20 @@ export const actions= {
     console.log(result)
   },
 
-  // async front_logout({ commit, state}) {
-  //   console.log("front_logout")
-  //   if (!state.logged_in) {
-  //     console.log("logging_out")
-  //     commit('CLEAN_STATE')
-  //     alert('break')
-  //     commit('LOGGED_IN', false)
-  //     window.location = '/login'
-  //   }
-  // },
+  async front_logout({ commit, state}) {
+      alert('Votre session a expiré, veuillez vous reconnecter.')
+      commit('CLEAN_STATE')
+      commit('LOGGED_IN', false)
+      window.location = '/login'
+
+  },
+    async front_logout_bis({ commit, state}) {
+      alert('Vous avez été déconnecté avec succès')
+      commit('CLEAN_STATE')
+      commit('LOGGED_IN', false)
+      window.location = '/'
+
+  },
 
   async logout ({ commit, state }) {
     // logIn(values)

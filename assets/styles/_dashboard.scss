@@ -70,6 +70,12 @@
   margin: 0 auto;
 }
 
+.first_half {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 60%;
+}
 .greetings {
   padding-top: 40px;
   margin-bottom: 20px;
@@ -77,10 +83,18 @@
   }
 
 .first_invoice {
-  margin: 0 auto;
   margin-top: 40px;
 }
 
+.overview {
+  text-align: center;
+  margin-top: 114px;
+  margin-right: 5px;
+  font-size:14px;
+  td, tr {
+    margin: 40px 0px;
+  }
+}
 .invoices_list {
   padding-top: 40px;
   width: 100%;

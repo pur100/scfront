@@ -1,17 +1,48 @@
 <template>
   <div class="dashboard" style="flex-direction: column;">
-  <div class="greetings">
-    <h2 style="text-align:left;">Bonjour {{user_data.first_name}} !</h2>
-    <h5>Bienvenue dans votre espace client, ici vous pouvez suivre l'avancée de vos recouvrements ainsi que communiquer de nouvelles factures à nos équipes.</h5>
-  </div>
+    <div class="first_row flex between">
+      <div class="first_half">
+        <div class="greetings">
+          <h2 style="text-align:left;">Bonjour {{user_data.first_name}} !</h2>
+          <h5>Bienvenue dans votre espace client, ici vous pouvez suivre l'avancée de vos recouvrements ainsi que communiquer de nouvelles factures à nos équipes.</h5>
+        </div>
+        <div  class="first_invoice">
+          <button class="side_buttons" @click="front_logout()">Se déconnecter</button>
+          <button class="side_buttons" @click="$refs.newInvoice.openModal()">
+            <span v-if="userInvoices.length === 0">Ajoutez votre première facture</span>
+            <span v-else>Nouvelle facture</span>
+          </button>
+        </div>
+      </div>
+      <div class="seconf_half">
+        <div class="overview" style="">
+          <table class="" style="width: 246px;color:#122746;" >
+            <thead>
+              <tr class="table_header">
+                <th style="text-align: left;">Statut</th>
+                <th>Nombre</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(count, index) in statusCountF" :class="count">
+                <td style="text-align: left;">{{ count[0] }}</td>
+                <td>{{ count[1] }}</td>
+                <td>{{ parseFloat(count[1] / userInvoices.length * 100).toFixed(0)+"%"}}</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Total</td>
+                <td>{{userInvoices.length}}</td>
+                <td>100%</td>
+              </tr>
 
-  <div  class="first_invoice">
-    <button class="side_buttons" @click="front_logout()">Se déconnecter</button>
-    <button class="side_buttons" @click="$refs.newInvoice.openModal()">
-      <span v-if="userInvoices.length === 0">Ajoutez votre première facture</span>
-      <span v-else>Nouvelle facture</span>
-    </button>
-  </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
 
   <div class="invoices_list" v-if="userInvoices.length > 0" style="margin: 0 auto">
     <table>
@@ -32,36 +63,8 @@
 </g>
 
 </svg></th>
-           <th @click="sort('amount')">Montant <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   width="10px" height="10px" viewBox="0 0 401.998 401.998" style="enable-background:new 0 0 401.998 401.998;"
-   xml:space="preserve">
-<g>
-  <g>
-    <path d="M73.092,164.452h255.813c4.949,0,9.233-1.807,12.848-5.424c3.613-3.616,5.427-7.898,5.427-12.847
-      c0-4.949-1.813-9.229-5.427-12.85L213.846,5.424C210.232,1.812,205.951,0,200.999,0s-9.233,1.812-12.85,5.424L60.242,133.331
-      c-3.617,3.617-5.424,7.901-5.424,12.85c0,4.948,1.807,9.231,5.424,12.847C63.863,162.645,68.144,164.452,73.092,164.452z"/>
-    <path d="M328.905,237.549H73.092c-4.952,0-9.233,1.808-12.85,5.421c-3.617,3.617-5.424,7.898-5.424,12.847
-      c0,4.949,1.807,9.233,5.424,12.848L188.149,396.57c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428l127.907-127.906
-      c3.613-3.614,5.427-7.898,5.427-12.848c0-4.948-1.813-9.229-5.427-12.847C338.139,239.353,333.854,237.549,328.905,237.549z"/>
-  </g>
-</g>
-
-</svg></th>
-           <th @click="sort('created_at')">Date d'envoi <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-   width="10px" height="10px" viewBox="0 0 401.998 401.998" style="enable-background:new 0 0 401.998 401.998;"
-   xml:space="preserve">
-<g>
-  <g>
-    <path d="M73.092,164.452h255.813c4.949,0,9.233-1.807,12.848-5.424c3.613-3.616,5.427-7.898,5.427-12.847
-      c0-4.949-1.813-9.229-5.427-12.85L213.846,5.424C210.232,1.812,205.951,0,200.999,0s-9.233,1.812-12.85,5.424L60.242,133.331
-      c-3.617,3.617-5.424,7.901-5.424,12.85c0,4.948,1.807,9.231,5.424,12.847C63.863,162.645,68.144,164.452,73.092,164.452z"/>
-    <path d="M328.905,237.549H73.092c-4.952,0-9.233,1.808-12.85,5.421c-3.617,3.617-5.424,7.898-5.424,12.847
-      c0,4.949,1.807,9.233,5.424,12.848L188.149,396.57c3.621,3.617,7.902,5.428,12.85,5.428s9.233-1.811,12.847-5.428l127.907-127.906
-      c3.613-3.614,5.427-7.898,5.427-12.848c0-4.948-1.813-9.229-5.427-12.847C338.139,239.353,333.854,237.549,328.905,237.549z"/>
-  </g>
-</g>
-
-</svg></th>
+           <th>Montant </th>
+           <th >Date d'envoi </th>
            <th @click="sort('status')">Statut <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
    width="10px" height="10px" viewBox="0 0 401.998 401.998" style="enable-background:new 0 0 401.998 401.998;"
    xml:space="preserve">
@@ -82,9 +85,9 @@
        </thead>
        <tbody>
          <tr v-for="invoice in sortedInvoices">
-           <td>{{ invoice.reference ? invoice.reference : "-" }} {{invoice.id}}</td>
-           <td>{{ invoice.amount}}</td>
-           <td>{{ invoice.created_at}}</td>
+           <td>{{ invoice.reference ? invoice.reference : "-" }} <span style="display: none;">{{ invoice.id }}</span> </td>
+           <td>{{ invoice.amount}} €</td>
+           <td>{{ datify(invoice.created_at)}}</td>
            <td style="" :class="['invoice_status',invoice.status]">
             <span class="circle" style="">
               <svg style="padding-top: 3px;"width="10px" height="10px" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
@@ -148,7 +151,7 @@
        <form action="" v-on:submit.prevent>
         <div class="new_invoice_row">
            <label for="amount">Montant de la facture*</label>
-           <input required v-model="amount" placeholder="" name="amount" type="number">
+           <input required v-model="amount" placeholder="" name="amount" type="number" step="0.01">
         </div>
         <div class="new_invoice_row">
           <label for="invoice">Facture au format .pdf*</label>
@@ -188,6 +191,7 @@ export default {
       user_id: this.$store.state.user.id,
       user_data: this.$store.state.user,
       access_expiring_date: this.$store.state.access_expiring_date,
+      allStatus: this.$store.state.allStatus,
       userInvoices: [],
       user_info: "",
       amount: 0,
@@ -199,7 +203,8 @@ export default {
       pageSize:6,
       currentPage:1,
       isActive: true,
-      formIsValid: false
+      formIsValid: false,
+      statusCount: ""
     }
   },
   components: {
@@ -207,19 +212,67 @@ export default {
   },
   created() {
     console.log('created')
-
   },
   mounted () {
-    this.userInvoices = this.$store.state.user_invoices
+
+
+
     var d1 = new Date()
-    var d2 = new Date(this.$store.state.access_expiring_date)
-    var d3 = new Date(d2.getTime() - 600000)
-    if (d1.getTime() >= d3.getTime()) {
-      console.log("needs logout")
-      const flushing = this.$store.dispatch('front_logout')
+    var raw_expire_date = this.$store.state.access_expiring_date
+    if (raw_expire_date !== "") {
+      var d2 = new Date(this.$store.state.access_expiring_date)
+      var d3 = new Date(d2.getTime() - 600000)
+      if (d1.getTime() >= d3.getTime()) {
+        alert('Votre session a expiré, veuillez vous reconnecter.')
+        console.log("needs logout")
+        const flushing = this.$store.dispatch('front_logout')
+      } else {
+        // EVERYTHING BETWEEN THESE TAGS
+
+        this.userInvoices = this.$store.state.user_invoices
+
+      }
+    } else {
+      window.location = "/login"
     }
+
   },
   computed: {
+    statusCountF:function() {
+      var y = this.$store.state.allStatus
+      var z = this.$store.state.user_invoices
+      var enAttente = 0
+      var enCours = 0
+      var recouvree = 0
+      var fermee = 0
+      var count = []
+      for (let i = 0; i < z.length; i++) {
+
+        if (z[i].status === 'En attente') {
+          enAttente = enAttente + 1
+        } ;
+        if (z[i].status === 'En cours de traitement') {
+          enCours = enCours + 1
+        }
+
+        if (z[i].status === 'Créance recouvrée') {
+          recouvree = recouvree + 1
+        }
+        if (z[i].status === 'Fermée') {
+          fermee = fermee + 1
+        }
+
+        var object = [["En attente", enAttente],
+                  ["En cours de traitement", enCours],
+                  ["Créance recouvrée", recouvree],
+                  ["Fermée", fermee]
+                  ]
+        this.statusCount = object
+
+
+      }
+    return this.statusCount
+    },
     userData() { return this.$store.state.user },
     sortedInvoices:function() {
         return this.userInvoices.sort((a,b) => {
@@ -236,6 +289,20 @@ export default {
       }
       },
   methods: {
+    datify: function(date) {
+      console.log('hey')
+      return(new Date(date).toLocaleDateString('fr-FR'))
+    },
+    goCount: function(data,prop) {
+        alert( data
+          .reduce((res, item) => Object
+            .assign(res, {
+              [item[prop]]: 1 + (res[item[prop]] || 0)
+            }), Object.create(null))
+        );
+      },
+
+
     nextPage:function() {
       if((this.currentPage*this.pageSize) < this.userInvoices.length) this.currentPage++;
     },
@@ -281,6 +348,7 @@ export default {
       var d1 = new Date()
       var d2 = new Date(this.$store.state.access_expiring_date)
       var d3 = new Date(d2.getTime() - 600000)
+      console.log(this.amount)
       if (d1.getTime() >= d3.getTime()) {
         console.log("needs logout")
         const flushing = this.$store.dispatch('front_logout')
@@ -293,7 +361,7 @@ export default {
               'email': this.new_debtor_mail
             }
       let formData = new FormData()
-
+      console.log(params)
       Object.entries(params).forEach(
         ([key, value]) => formData.append(key, value)
       )

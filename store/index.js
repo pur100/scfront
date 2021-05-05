@@ -24,9 +24,10 @@ export const state = () => ({
   result_log_out: "test",
   user: "user data",
   user_invoices: "user invoices",
-  access_expiring_date: null,
+  access_expiring_date: "",
   errors: null,
-  logged_in: false
+  logged_in: false,
+  allStatus: ["En attente", "En cours de traitement", "Créance recouvrée", "Fermée"]
 })
 
 export const actions= {
@@ -71,10 +72,10 @@ export const actions= {
   },
 
   async front_logout({ commit, state}) {
-      alert('Votre session a expiré, veuillez vous reconnecter.')
       commit('CLEAN_STATE')
       commit('LOGGED_IN', false)
-      window.location = '/login'
+      setTimeout(function(){ window.location = '/login'; }, 3000);
+
 
   },
     async front_logout_bis({ commit, state}) {
@@ -162,7 +163,7 @@ export const mutations = {
     state.csrf_token = ""
     state.counter = 0
     state.errors = null
-    state.access_expiring_date = null
+    state.access_expiring_date = ""
     state.user_invoices = null
     state.errors = null
     state.logged_in = false

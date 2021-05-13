@@ -1,4 +1,5 @@
 <template>
+
   <nav class="nav" style="position: relative;" v-bind:class="{ menuBurger: activeMenu }">
     <div class="wrap">
       <router-link tag="div" to="/">

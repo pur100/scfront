@@ -17,10 +17,10 @@
 
 
 
+        <h1 class="errors" style="display: none;">{{ errors }}</h1>
 
       </div>
 
-      <h1 class="errors" style="display: none;">{{ errors }}</h1>
 
 
     </div>

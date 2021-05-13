@@ -39,12 +39,13 @@ export const actions= {
   async login ({ commit, state }, values) {
 
     // logIn(values)
+    document.getElementsByClassName('loading_modal')[0].classList.add("visible")
 
     const result = await this.$axios.$post(state.live_url + "login",{
       email: values.username,
       password: values.password,
     })
-    console.log(result)
+
     if(result.session) {
       commit('SET_CSRF_TOKEN', result.session.access)
       commit('SET_USER', result.user)
@@ -57,6 +58,7 @@ export const actions= {
       commit('SET_ERRORS', result.error_message)
       document.getElementsByClassName('errors')[0].classList.add("visible")
     }
+    document.getElementsByClassName('loading_modal')[0].classList.remove("visible")
 
     // if (result.session.access) {
     //   window.location = "/dashboard"
@@ -68,7 +70,6 @@ export const actions= {
     const result = await this.$axios.$post('http://localhost:3000/refresh_by_access',{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
-    console.log(result)
   },
 
   async front_logout({ commit, state}) {
@@ -111,8 +112,8 @@ export const actions= {
     console.log(result)
   },
   async signup ({ commit, state }, values) {
-    console.log("store values : ")
-    console.log(values)
+    document.getElementsByClassName('loading_modal')[0].classList.add("visible")
+
 
     // logIn(values)
     const result = await this.$axios.$post(state.live_url + "users",{
@@ -125,8 +126,6 @@ export const actions= {
       tel: values.tel,
       company_siret: values.siret
     })
-
-    console.log(result)
 
     if (result.session) {
       commit('SET_CSRF_TOKEN', result.session.access)
@@ -142,6 +141,8 @@ export const actions= {
       commit('SET_ERRORS', result.error_message[0])
       document.getElementsByClassName('errors')[0].classList.add("visible")
     }
+
+    document.getElementsByClassName('loading_modal')[0].classList.remove("visible")
 
   }
 }

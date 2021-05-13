@@ -336,15 +336,19 @@ export default {
       console.log( event.target.parentNode.parentNode.dataset.id)
       const result = await this.$axios.$delete(this.$store.state.live_url + "invoices/" + event.target.parentNode.parentNode.dataset.id)
       console.log(result)
+      document.getElementsByClassName('loading_modal')[0].classList.add("visible")
 
       if(result) {
         const update = await this.$store.dispatch('getUserData', this.user_id)
         this.userInvoices = this.$store.state.user_invoices
+        document.getElementsByClassName('loading_modal')[0].classList.remove("visible")
 
       }
 
     },
     async createInvoice(){
+      document.getElementsByClassName('loading_modal')[0].classList.add("visible")
+
       var d1 = new Date()
       var d2 = new Date(this.$store.state.access_expiring_date)
       var d3 = new Date(d2.getTime() - 600000)
@@ -369,12 +373,12 @@ export default {
 
       // Finally, sending the POST request with our beloved Axios
       const result = await this.$axios.$post(this.$store.state.live_url + "invoices" ,formData)
-      console.log(result)
+
       if(result) {
         const update = await this.$store.dispatch('getUserData', this.user_id)
         this.userInvoices = this.$store.state.user_invoices
         document.getElementById('close_modal').click()
-
+        document.getElementsByClassName('loading_modal')[0].classList.remove("visible")
       }
 
     },

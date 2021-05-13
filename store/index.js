@@ -115,7 +115,7 @@ export const actions= {
     console.log(values)
 
     // logIn(values)
-    const result = await this.$axios.$post(state.test_url + "users",{
+    const result = await this.$axios.$post(state.live_url + "users",{
       email: values.username,
       password: values.password,
       password_confirmation: values.password_confirmation,

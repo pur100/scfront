@@ -13,14 +13,14 @@
         <br/>
         <br/>
         <br/>
-        <button class="side_buttons" v-show="!loggedIn" @click="login">Connexion</button>
+        <button class="side_buttons" @click="login">Connexion</button>
 
 
 
 
       </div>
 
-      <h1 class="errors" style="display: none;color: red">{{ errors }} errors</h1>
+      <h1 class="errors" style="display: none;">{{ errors }}</h1>
 
 
     </div>

@@ -334,7 +334,7 @@ export default {
     },
     async deleteInvoice(event) {
       console.log( event.target.parentNode.parentNode.dataset.id)
-      const result = await this.$axios.$delete(this.$store.state.test_url + "invoices/" + event.target.parentNode.parentNode.dataset.id)
+      const result = await this.$axios.$delete(this.$store.state.live_url + "invoices/" + event.target.parentNode.parentNode.dataset.id)
       console.log(result)
 
       if(result) {
@@ -368,7 +368,8 @@ export default {
 
 
       // Finally, sending the POST request with our beloved Axios
-      const result = await this.$axios.$post(this.$store.state.test_url + "invoices" ,formData)
+      const result = await this.$axios.$post(this.$store.state.live_url + "invoices" ,formData)
+      console.log(result)
       if(result) {
         const update = await this.$store.dispatch('getUserData', this.user_id)
         this.userInvoices = this.$store.state.user_invoices

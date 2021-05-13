@@ -40,7 +40,7 @@ export const actions= {
 
     // logIn(values)
 
-    const result = await this.$axios.$post(state.test_url + "login",{
+    const result = await this.$axios.$post(state.live_url + "login",{
       email: values.username,
       password: values.password,
     })
@@ -92,7 +92,7 @@ export const actions= {
 
     commit('CLEAN_STATE')
     commit('LOGGED_IN', false)
-    const result = await this.$axios.$delete(state.test_url + "login",
+    const result = await this.$axios.$delete(state.live_url + "login",
     {
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
@@ -103,7 +103,7 @@ export const actions= {
   async getUserData ({ commit, state}) {
     const user_id = state.user.id
 
-    const result = await this.$axios.$get(state.test_url + "users/" + user_id,{
+    const result = await this.$axios.$get(state.live_url + "users/" + user_id,{
       headers: {Authorization: "Bearer " + state.csrf_token}
     })
     commit('SET_RESULT', result)
@@ -125,10 +125,16 @@ export const actions= {
       tel: values.tel,
       company_siret: values.siret
     })
-    commit('SET_CSRF_TOKEN', result.session.access)
-    commit('SET_USER', result.user)
-    commit('LOGGED_IN', true)
-    if (result.session.access) {window.location="/dashboard"}
+      commit('SET_CSRF_TOKEN', result.session.access)
+      commit('SET_USER', result.user)
+      commit('SET_EXPIRING_DATE', result.session.access_expires_at)
+      commit('SET_USER_INVOICES', result.invoices)
+      commit('increment')
+      commit('LOGGED_IN', true)
+
+    if (result.session.access) {
+      setTimeout(window.location = "/dashboard", 1000)
+    }
   }
 }
 

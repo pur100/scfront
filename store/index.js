@@ -125,16 +125,24 @@ export const actions= {
       tel: values.tel,
       company_siret: values.siret
     })
+
+    console.log(result)
+
+    if (result.session) {
       commit('SET_CSRF_TOKEN', result.session.access)
       commit('SET_USER', result.user)
       commit('SET_EXPIRING_DATE', result.session.access_expires_at)
       commit('SET_USER_INVOICES', result.invoices)
       commit('increment')
       commit('LOGGED_IN', true)
-
-    if (result.session.access) {
-      setTimeout(window.location = "/dashboard", 1000)
+      if (result.session.access) {
+      setTimeout(window.location = "/dashboard", 30000)
+      }
+    } else {
+      commit('SET_ERRORS', result.error_message[0])
+      document.getElementsByClassName('errors')[0].classList.add("visible")
     }
+
   }
 }
 

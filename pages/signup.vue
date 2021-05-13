@@ -29,6 +29,7 @@
           <br>
           <button class="side_buttons" @click="createUser">Créez votre compte</button>
         </div>
+        <h1 class="errors" style="display: none;">{{ errors }}</h1>
 
       </div>
     </div>
@@ -46,7 +47,8 @@ export default {
   },
   computed: {
     samePasswords() { return this.password === this.passwordRepeat },
-    passwordLength() { return this.password.length > 5}
+    passwordLength() { return this.password.length > 5},
+    errors() { return this.$store.state.errors }
   },
   methods: {
     async getIP() {

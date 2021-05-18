@@ -39,7 +39,7 @@ export const actions= {
   async login ({ commit, state }, values) {
 
     // logIn(values)
-    document.getElementsByClassName('loading_modal')[0].classList.add("visible")
+    // document.getElementsByClassName('loading_modal')[0].classList.add("visible")
 
     const result = await this.$axios.$post(state.live_url + "login",{
       email: values.username,

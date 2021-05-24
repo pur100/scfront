@@ -12,7 +12,7 @@
           </div>
 
           <div class="full_row">
-            <input style="width:94%;"v-model="company_name" required placeholder="Entreprise">
+            <input style="width:340px;"v-model="company_name" required placeholder="Entreprise">
           </div>
 
 
@@ -22,7 +22,7 @@
           </div>
 
           <div class="full_row">
-            <input style="width:94%;"v-model="username" required placeholder="E-mail">
+            <input style="width:340px;"v-model="username" required placeholder="E-mail">
           </div>
           <input v-model="password" required placeholder="password" type="password">
           <input v-model="passwordRepeat" required placeholder="repeat password" type="password">

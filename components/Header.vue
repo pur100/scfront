@@ -1,6 +1,11 @@
 <template>
 
   <nav class="nav" style="position: relative;" v-bind:class="{ menuBurger: activeMenu }">
+     <div id="loader" class="loading_modal">
+      <div class="img_container">
+        <img src="https://img1.picmix.com/output/stamp/normal/8/5/2/9/509258_fb107.gif">
+      </div>
+    </div>
     <div class="wrap">
       <router-link tag="div" to="/">
 

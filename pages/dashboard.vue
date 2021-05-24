@@ -158,11 +158,11 @@
            <input required v-on:change="uploadFile" type="file" name="invoice_file" placeholder="facture.pdf">
         </div>
         <div class="new_invoice_row">
-          <label for="invoice">E-mail du contact</label>
+          <label for="invoice">E-mail du contact débiteur</label>
            <input   type="email" v-model="new_debtor_mail" name="new_debtor_mail" placeholder="contact@email.fr">
         </div>
         <div class="new_invoice_row">
-          <label for="invoice">Téléphone du contact</label>
+          <label for="invoice">Téléphone du contact débiteur</label>
            <input type="tel" v-model="new_debtor_tel" name="new_debtor_tel" placeholder="06 63 47 29 66">
         </div>
            <h6 class="invoice_disclaimer">"Afin de permettre un traitement optimal de vos dossiers merci de nous transmettre des coordonnées fonctionnelles"</h6>

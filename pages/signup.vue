@@ -1,3 +1,4 @@
+
 <template>
   <div class="container" style="min-height: 84vh;">
     <div>
@@ -16,7 +17,7 @@
 
 
           <div class="signup_row">
-            <input v-model="siret" required placeholder="SIRET">
+            <input v-model="siret" required placeholder="SIREN">
             <input v-model="tel" placeholder="Téléphone">
           </div>
 

@@ -7,7 +7,7 @@
 
     <div>
         <br/>
-        <input v-model="username" placeholder="Identifiant">
+        <input v-model="username" placeholder="Votre adresse mail">
         <br/>
         <input v-model="password" placeholder="Mot de passe" type="password">
         <br/>
